@@ -1,0 +1,19 @@
+.inline-modal {
+    position: relative;
+}
+
+.inline-modal-body {
+    position: absolute;
+}
+
+.hover-open {
+    .inline-modal-body {
+        display: none;
+    }
+
+    &:hover {
+        .inline-modal-body {
+            display: block;
+        }
+    }
+}
