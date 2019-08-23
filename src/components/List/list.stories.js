@@ -18,7 +18,7 @@ const fruitsList = [{
 }, {
     id: 5,
     name: "Pineapple"
-}]
+}];
 
 
 storiesOf("List", module)
@@ -29,4 +29,13 @@ storiesOf("List", module)
     })
     .add("Simple Usage", () => {
         return (<List items={fruitsList} />)
+    })
+    .add("Custom ListItem", () => {
+        const ListItem = ({ itemData }) => {
+            let { name } = itemData;
+        
+            return (<li>{`Custom ListItem ---> ${name}`}</li>)
+        };
+
+        return (<List items={fruitsList} ListItem={ListItem} />)
     });
