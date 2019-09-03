@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from "@storybook/react";
+import { linkTo } from '@storybook/addon-links';
 
 import InlineModal, { InlineModalActivator, InlineModalBody } from "./InlineModal";
 import { List } from "../";
@@ -22,22 +23,17 @@ const fruitsList = [{
 }]
 
 storiesOf("InlineModal", module)
-    .addParameters({
-        info: {
-            inline: true
-        }
-    })
     .add("Simple Usage", () => {
         return ( <InlineModal>
             <InlineModalActivator>
                 <div>Select</div>
             </InlineModalActivator>
             <InlineModalBody>
-                <List items={fruitsList} />
+                <List items={fruitsList} showApp={linkTo("List")}/>
             </InlineModalBody>
         </InlineModal>)
     }, {
         info: {
-            text: "This story has additional text added to the info!"
-        },
+            text: "Displaying a dropdown list of items"
+        }
     });

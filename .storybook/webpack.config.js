@@ -20,6 +20,10 @@ module.exports = async ({ config, mode }) => {
                 }
             }
         ]
+    }, {
+        test: /\.stories\.jsx?$/,
+        loaders: [require.resolve('@storybook/addon-storysource/loader')],
+        enforce: 'pre',
     });
 
     config.plugins.push(new MiniCssExtractPlugin({

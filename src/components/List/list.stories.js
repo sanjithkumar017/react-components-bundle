@@ -22,11 +22,6 @@ const fruitsList = [{
 
 
 storiesOf("List", module)
-    .addParameters({
-        info: {
-            inline: true
-        }
-    })
     .add("Simple Usage", () => {
         return (<List items={fruitsList} />)
     })

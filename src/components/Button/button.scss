@@ -1,0 +1,41 @@
+.btn {
+    border-radius: 3px;
+    cursor: pointer;
+
+    &.small {
+        padding: 6px 8px;
+    }
+
+    &.medium {
+        padding: 10px 15px;
+    }
+
+    &.large {
+        padding: 15px 22px;
+    }
+}
+
+.default-btn {    
+    &:hover {
+        background: #f3f3f3;
+    }
+}
+
+.primary-btn {
+    background: #1fa7fd;
+    color: #FFF;
+    border: 0;
+
+    &:hover {
+        background: #208dd2;
+    }
+}
+
+.secondary-btn {
+    background: #FFF;
+    border: 1px solid #95c7e7;
+
+    &:hover {
+        background: #eef8ff;
+    }
+}
