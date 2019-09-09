@@ -1,6 +1,38 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./inlineModal.scss";
+import styled from "styled-components";
+
+const StyledInlineModal = styled.div`
+    position: relative;
+
+    &.hover-open {
+        .inline-modal-body {
+            display: none;
+        }
+    
+        &:hover {
+            .inline-modal-body {
+                display: block;
+            }
+        }
+    }
+`;
+
+const StyledInlineModalBtn = styled.div`
+    display: inline-block;
+    background: #FFF;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+`;
+
+const StyledInlineModalBody = styled.div`
+    position: absolute;
+    background: #FFF;
+    border: 1px solid #efeeee;
+    box-shadow: 0 9px 12px 0 rgba(0,0,0,0.15);
+`;
 
 export const InlineModalActivator = (props) => {
     return (<div>
@@ -15,10 +47,10 @@ export const InlineModalBody = (props) => {
 }
 
 const InlineModal = (props) => {
-    const { children, activatorAction } = props;
+    const { children, activatorAction, className } = props;
     let [ isModalOpen, toggleModalOpen ] = useState(false);
     let activatorProps = {};
-    let inlineModalClassName = "inline-modal";
+    let inlineModalClassName = className;
     let showModalBody = isModalOpen;
     const inlineModalRef = useRef();
 
@@ -55,10 +87,10 @@ const InlineModal = (props) => {
         showModalBody = true;
     }
 
-    return (<div className={inlineModalClassName} ref={inlineModalRef}>
-        <div {...activatorProps} className="inline-modal-btn">{children[0]}</div>
-        {showModalBody && <div className="inline-modal-body">{children[1]}</div>}
-    </div>);
+    return (<StyledInlineModal className={inlineModalClassName} ref={inlineModalRef}>
+        <StyledInlineModalBtn {...activatorProps} className="inline-modal-btn">{children[0]}</StyledInlineModalBtn>
+        {showModalBody && <StyledInlineModalBody className="inline-modal-body">{children[1]}</StyledInlineModalBody>}
+    </StyledInlineModal>);
 }
 
 InlineModal.defaultProps = {

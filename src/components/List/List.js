@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ListItem = (props) => {
     let { itemData = {} } = props;
-    let { name } = itemData
+    let { name } = itemData;
 
     return (<li className="list-item">{name}</li>);
 }

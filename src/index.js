@@ -4,8 +4,16 @@ import {
     InlineModal
 } from "./components";
 
+import { ButtonAppearance, ButtonSize } from "./components/Button";
+
+import { InlineModalActivator, InlineModalBody } from "./components/InlineModal";
+
 export {
     Button,
+    ButtonAppearance,
+    ButtonSize,
     List,
-    InlineModal
+    InlineModal,
+    InlineModalActivator,
+    InlineModalBody
 };
