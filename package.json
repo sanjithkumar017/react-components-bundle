@@ -1,6 +1,6 @@
 {
   "name": "react-components-bundle",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "React components library",
   "keywords": [
     "react components",
@@ -14,11 +14,14 @@
   },
   "author": "Anupama H",
   "license": "ISC",
+  "sideEffects": false,
   "main": "lib/index.js",
   "scripts": {
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook",
-    "build": "babel src -d lib --watch"
+    "build": "babel src -d lib --watch",
+    "publish-package": "npm run build && npm run copypackage && cd lib && npm publish",
+    "copypackage": "cp -rf package.json lib"
   },
   "dependencies": {
     "@storybook/addon-a11y": "^5.1.11",
