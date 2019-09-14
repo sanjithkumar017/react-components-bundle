@@ -1,11 +1,38 @@
 
 # react-components-bundle
 
-## Prerequisites
+## Using the components library
+
+Install the package from npm
+
+```
+npm install react-components-bundle
+```
+
+Import the required components 
+
+```
+import Button from "react-components-bundle/components/Button";
+
+// or less ideally
+import { Button } from "react-components-bundle";
+```
+
+## Overriding CSS
+
+react-components-bundle is made using [styled-components](https://www.styled-components.com/).
+
+You can override CSS in the following 2 ways:
+
+1) Extend the styled-component
+
+## Setting the project up for development
+
+### Prerequisites
 
 Install [npm](https://www.npmjs.com/get-npm)
 
-## Setting Up
+### Setting Up
 
 Install the npm packages using the following command
 
@@ -19,7 +46,7 @@ Start the build using the following command
 npm run build
 ```
 
-## Viewing the components
+### Viewing the components
 
 View the available components along with their accepted props using [storybook](https://storybook.js.org/)
 
@@ -37,7 +64,7 @@ The storybook can then be viewed at http://localhost:6006/
 
 ## FAQs
 
-1) I am getting "" error. What to do?
+1) I am getting "multiple instances of React" error. What to do?
     
     You can fix this error by adding the following config in your `webpack.config.js` file
 

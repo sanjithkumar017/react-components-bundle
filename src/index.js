@@ -1,8 +1,14 @@
 import {
     Button,
     List,
-    InlineModal
+    InlineModal,
+    DataLoader
 } from "./components";
+
+import { 
+    dataLoader, 
+    utils 
+} from "./core";
 
 import { ButtonAppearance, ButtonSize } from "./components/Button";
 
@@ -15,5 +21,8 @@ export {
     List,
     InlineModal,
     InlineModalActivator,
-    InlineModalBody
+    InlineModalBody,
+    DataLoader,
+    dataLoader,
+    utils
 };

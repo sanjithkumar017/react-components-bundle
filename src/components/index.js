@@ -1,9 +1,11 @@
-import Button from "./Button/Button";
-import List from "./List/List";
-import InlineModal from "./InlineModal/InlineModal";
+import Button from "./Button";
+import List from "./List";
+import InlineModal from "./InlineModal";
+import DataLoader from "./DataLoader";
 
 export {
     Button,
     List,
-    InlineModal
-}
+    InlineModal,
+    DataLoader
+};
