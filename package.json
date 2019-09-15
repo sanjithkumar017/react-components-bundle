@@ -23,7 +23,7 @@
     "build": "babel src -d lib",
     "publish-package": "npm run build && npm run copypackage && cd lib && npm publish",
     "link": "npm run copypackage && cd lib && npm link",
-    "copypackage": "cp -rf package.json lib"
+    "copypackage": "cp -rf package.json lib Readme.md"
   },
   "dependencies": {
     "@storybook/addon-a11y": "^5.1.11",
