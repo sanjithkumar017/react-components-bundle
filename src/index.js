@@ -2,7 +2,11 @@ import {
     Button,
     List,
     InlineModal,
-    DataLoader
+    DataLoader,
+    Form,
+    Input,
+    Dropdown,
+    Table
 } from "./components";
 
 import { 
@@ -22,7 +26,11 @@ export {
     InlineModal,
     InlineModalActivator,
     InlineModalBody,
+    Form,
+    Input,
+    Dropdown,
     DataLoader,
+    Table,
     dataLoader,
     utils
 };

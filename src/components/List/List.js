@@ -13,11 +13,12 @@ const List = (props) => {
         className = "",
         items,
         idAttribute,
-        ListItem 
+        ListItem,
+        ...restProps
     } = props;
 
     return (<ul className={`list ${className}`}>
-        {items.map(itemData => <ListItem itemData={itemData} key={itemData[idAttribute]} />)}
+        {items.map(itemData => <ListItem itemData={itemData} key={itemData[idAttribute]} idAttribute={idAttribute} {...restProps} />)}
     </ul>);
 }
 

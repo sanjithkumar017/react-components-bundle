@@ -1,4 +1,4 @@
-import React, { Fragment, Component, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Promise from "bluebird";
 import dequal from "dequal";
@@ -69,9 +69,9 @@ DataLoader.propTypes = {
     /** Callback function which is called when data fetching fails */
     onDataFailed: PropTypes.func,
     /** Provide a custom loader component */
-    Loader: PropTypes.oneOf([
+    Loader: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
-        PropTypes.instanceOf(Component)
+        PropTypes.func
     ])
 };
 

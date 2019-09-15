@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { forwardRef, useState, useRef, useEffect, useImperativeHandle } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -46,16 +46,16 @@ export const InlineModalBody = (props) => {
     </div>);
 }
 
-const InlineModal = (props) => {
-    const { children, activatorAction, className } = props;
-    let [ isModalOpen, toggleModalOpen ] = useState(false);
+let InlineModal = (props, ref) => {
+    const { children, activatorAction, className, isModalOpen:propIsOpen } = props;
+    let [ isModalOpen, setIsModalOpen ] = useState(propIsOpen);
     let activatorProps = {};
     let inlineModalClassName = className;
     let showModalBody = isModalOpen;
     const inlineModalRef = useRef();
 
     const onActivatorClick = () => {
-        toggleModalOpen(!isModalOpen);
+        setIsModalOpen(!isModalOpen);
     }
 
     const onBodyClick = (e) => {
@@ -65,7 +65,7 @@ const InlineModal = (props) => {
         }
 
         /* outside click -> close modal */
-        toggleModalOpen(false);
+        setIsModalOpen(false);
     }
     
     useEffect(() => {
@@ -87,14 +87,24 @@ const InlineModal = (props) => {
         showModalBody = true;
     }
 
+    /* add methods that can be accessed via this component's ref */
+    useImperativeHandle(ref, () => ({
+        hideModal: () => {
+            setIsModalOpen(false);
+        }
+    }));
+
     return (<StyledInlineModal className={inlineModalClassName} ref={inlineModalRef}>
         <StyledInlineModalBtn {...activatorProps} className="inline-modal-btn">{children[0]}</StyledInlineModalBtn>
         {showModalBody && <StyledInlineModalBody className="inline-modal-body">{children[1]}</StyledInlineModalBody>}
     </StyledInlineModal>);
 }
 
+InlineModal = forwardRef(InlineModal);
+
 InlineModal.defaultProps = {
-    activatorAction: "click" // or "hover"
+    activatorAction: "click", // or "hover"
+    isModalOpen: false
 };
 
 InlineModal.propTypes = {
@@ -114,7 +124,8 @@ InlineModal.propTypes = {
                 `${componentName} should have an InlineModalActivator & InlineModalBody components as children`
             );
         }
-    }
+    },
+    isModalOpen: PropTypes.bool
 };
 
 export default InlineModal;
