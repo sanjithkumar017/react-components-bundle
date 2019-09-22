@@ -54,7 +54,9 @@ const TabsComponent = (props) => {
 
     const changeTab = (id) => {
         setSelected(id);
-        onTabChanged(id);
+        if (typeof(onTabChanged === "function")) {
+            onTabChanged(id);
+        }
     }
 
     return (<StyledTabsContainer className={`tabs-cont ${className}`}>
