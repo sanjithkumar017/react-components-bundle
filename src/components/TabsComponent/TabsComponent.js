@@ -54,7 +54,7 @@ const TabsComponent = (props) => {
 
     const changeTab = (id) => {
         setSelected(id);
-        if (typeof(onTabChanged === "function")) {
+        if (typeof(onTabChanged) === "function") {
             onTabChanged(id);
         }
     }
