@@ -7,7 +7,7 @@ export const FormContext = createContext({
 
 const Form = (props) => {
     const [ formData, setFormData ] = useState({});
-    const { onSubmit } = props;
+    const { className, onSubmit } = props;
 
     const onValueChange = (key, value) => {
         formData[key] = value;
@@ -19,7 +19,7 @@ const Form = (props) => {
         onSubmit({ data: formData });
     }
 
-    return (<form onSubmit={onFormSubmit}>
+    return (<form onSubmit={onFormSubmit} className={className}>
         <FormContext.Provider value={{onValueChange: onValueChange}}>
             {props.children}
         </FormContext.Provider>

@@ -1,8 +1,36 @@
 import React, { useState, useContext, useRef } from "react";
 import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 import InlineModal, { InlineModalActivator, InlineModalBody } from "../InlineModal";
 import List from "../List";
 import { FormContext } from "./Form";
+import FormElementWrapper from "./FormElementWrapper";
+
+const SelectArrow = styled.span`
+    float: right;
+    font-size: 12px;
+    color:  #96a9bc;
+    margin-right: 12px;
+
+    &:after {
+        content: "\u25BC";
+        vertical-align: middle;
+    }
+`;
+
+const DDListItem = styled.li`
+    list-style-type: none;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #eee;
+    }
+
+    ${props => props.selected && css`
+        background-color: #eee;
+    `}
+`;
 
 const getSelectedList = (options = [], selectedIds = [], idAttribute) => {
     return selectedIds.map(id => {
@@ -20,16 +48,19 @@ const defaultRenderSelectionSummary = ({selectedItems = [], multiSelect, noSelec
         summaryString = selectedCount ? selectedItems[0]["name"] : noSelectionLabel;
     }
 
-    return (<div>{summaryString}</div>);
+    return (<div>{summaryString}<SelectArrow className="select-arrow"></SelectArrow></div>);
 };
 
 export const DefaultDropdownItem = (props) => {
-    const { itemData, selectItem, idAttribute } = props;
+    const { itemData, selectItem, selected = [], idAttribute } = props;
     const { name } = itemData;
+    const idValue = itemData[idAttribute];
 
-    return (<li onClick={() => selectItem(itemData[idAttribute])} className="list-item">
+    const isSelected = selected.indexOf(idValue) === -1 ? false : true;
+
+    return (<DDListItem onClick={() => selectItem(itemData[idAttribute])} className="list-item" selected={isSelected}>
         {name}
-    </li>);
+    </DDListItem>);
 };
 
 const Dropdown = (props) => {
@@ -43,6 +74,7 @@ const Dropdown = (props) => {
         options, 
         idAttribute,
         noSelectionLabel,
+        appearance,
         multiSelect,
         DropdownItem 
     } = props;
@@ -80,7 +112,7 @@ const Dropdown = (props) => {
 
     // TODO : add search feature
 
-    return (<div className={`form-el-cont ${className}`}>
+    return (<FormElementWrapper className={className} appearance={appearance}>
         <label className="form-el-label" htmlFor={name}>{label}</label>
         <InlineModal className="form-el" ref={inlineModalRef}>
             <InlineModalActivator>
@@ -94,7 +126,7 @@ const Dropdown = (props) => {
                 <List items={options} ListItem={DropdownItem} selected={selected} selectItem={selectItem} idAttribute={idAttribute} />
             </InlineModalBody>
         </InlineModal>
-    </div>);
+    </FormElementWrapper>);
 };
 
 Dropdown.propTypes = {
@@ -130,6 +162,8 @@ Dropdown.defaultProps = {
     className: "",
     idAttribute: "id",
     noSelectionLabel: "Select",
+    /* Define the appearance of the form element. Accepted values are either "inline" or "block" */
+    appearance: PropTypes.oneOf(["inline", "block"]),
     DropdownItem: DefaultDropdownItem,
     renderSelectionSummary: defaultRenderSelectionSummary
 };

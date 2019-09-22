@@ -4,6 +4,7 @@ import InlineModal from "./InlineModal";
 import DataLoader from "./DataLoader";
 import Form, { Input, Dropdown } from "./Form";
 import Table from "./Table";
+import TabsComponent from "./TabsComponent";
 
 export {
     Button,
@@ -13,5 +14,6 @@ export {
     Form,
     Input,
     Dropdown,
-    Table
+    Table,
+    TabsComponent
 };

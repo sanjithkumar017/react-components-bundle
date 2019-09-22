@@ -35,9 +35,7 @@ const StyledInlineModalBody = styled.div`
 `;
 
 export const InlineModalActivator = (props) => {
-    return (<div>
-        {props.children}
-    </div>);
+    return props.children;
 }
 
 export const InlineModalBody = (props) => {

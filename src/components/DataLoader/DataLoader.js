@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Promise from "bluebird";
 import dequal from "dequal";
@@ -19,7 +19,7 @@ const loadData = (requests) => {
 const DataLoader = (props) => {
     const [ isLoading, setIsLoading ] = useState(true);
     const dataRef = React.useRef()
-    const { children, Loader, requests, onDataLoaded, onDataFailed } = props;
+    const { className, children, Loader, requests, onDataLoaded, onDataFailed } = props;
 
     const renderLoader = () => {
         return Loader || DefaultLoader;
@@ -54,11 +54,11 @@ const DataLoader = (props) => {
         }
     });
 
-    return (<Fragment>
+    return (<div className={className}>
         {isLoading ? 
             renderLoader()
             : renderChildren()}
-    </Fragment>);
+    </div>);
 };
 
 DataLoader.propTypes = {

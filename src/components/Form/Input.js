@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { FormContext } from "./Form";
+import FormElementWrapper from "./FormElementWrapper";
 
 const Input = (props) => {
-    const { label, name, type, className, value, defaultValue, placeholder, onChange } = props;
+    const { label, name, type, className, value, defaultValue, placeholder, appearance, onChange } = props;
     const { onValueChange } = useContext(FormContext);
 
     const onInputChange = (event) => {
@@ -25,7 +26,7 @@ const Input = (props) => {
         id: name,
         defaultValue,
         placeholder,
-        className: `form-el ${className}`,
+        className: "form-el",
         onChange: onInputChange
     };
 
@@ -34,10 +35,10 @@ const Input = (props) => {
         inputProps.value = value;
     }
 
-    return (<div className="form-el-cont">
+    return (<FormElementWrapper className={className} appearance={appearance}>
         <label className="form-el-label" htmlFor={name}>{label}</label>
         <input {...inputProps} />
-    </div>);
+    </FormElementWrapper>);
 };
 
 Input.propTypes = {
@@ -51,6 +52,8 @@ Input.propTypes = {
     value: PropTypes.any,
     defaultValue: PropTypes.any,
     placeholder: PropTypes.string,
+    /* Define the appearance of the form element. Accepted values are either "inline" or "block" */
+    appearance: PropTypes.string,
     /* Becomes a controlled component if onChange function is given */
     onChange: PropTypes.func
 };

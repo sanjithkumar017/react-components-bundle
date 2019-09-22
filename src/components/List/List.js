@@ -1,5 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const StyledList = styled.ul`
+    margin: 0;
+    padding: 0;
+`;
 
 const ListItem = (props) => {
     let { itemData = {} } = props;
@@ -17,9 +23,9 @@ const List = (props) => {
         ...restProps
     } = props;
 
-    return (<ul className={`list ${className}`}>
+    return (<StyledList className={`list ${className}`}>
         {items.map(itemData => <ListItem itemData={itemData} key={itemData[idAttribute]} idAttribute={idAttribute} {...restProps} />)}
-    </ul>);
+    </StyledList>);
 }
 
 List.propTypes = {

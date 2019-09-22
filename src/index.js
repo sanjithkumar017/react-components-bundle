@@ -6,7 +6,8 @@ import {
     Form,
     Input,
     Dropdown,
-    Table
+    Table,
+    TabsComponent
 } from "./components";
 
 import { 
@@ -31,6 +32,7 @@ export {
     Dropdown,
     DataLoader,
     Table,
+    TabsComponent,
     dataLoader,
     utils
 };

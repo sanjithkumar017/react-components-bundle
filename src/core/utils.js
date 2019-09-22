@@ -7,6 +7,9 @@ const utils = {
         });
 
         return queryParams.join("&");
+    },
+    isEven: function(value) {
+        return value % 2 === 0;
     }
 }
 
