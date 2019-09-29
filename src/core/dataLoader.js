@@ -29,7 +29,11 @@ class DataLoader {
         if (method.toLowerCase() === "get") {
             requestUrl = `${url}?${utils.getQueryParams(params)}`;
         } else {
-            requestMetadata.body = new FormData(params);
+            const formData = new FormData();
+            for (const key in params) {
+                formData.append(key, params[key]);
+            }
+            requestMetadata.body = formData;
         }
 
         return new Promise((resolve, reject) => {
