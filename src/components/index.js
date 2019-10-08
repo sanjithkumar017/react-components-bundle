@@ -5,6 +5,7 @@ import DataLoader from "./DataLoader";
 import Form, { Input, Dropdown } from "./Form";
 import Table from "./Table";
 import TabsComponent from "./TabsComponent";
+import NotificationComponent from "./NotificationComponent";
 
 export {
     Button,
@@ -15,5 +16,6 @@ export {
     Input,
     Dropdown,
     Table,
-    TabsComponent
+    TabsComponent,
+    NotificationComponent
 };

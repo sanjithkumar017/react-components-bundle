@@ -4,8 +4,9 @@ import utils from "./utils";
 
 class DataLoader {
     _requestsMap = {}
-    setCommonHeaders () {
-
+    _commonHeaders = {}
+    setCommonHeaders (headers) {
+        this._commonHeaders = {...this._commonHeaders, ...headers};
     }
     setResponseParser () {
     
@@ -16,19 +17,24 @@ class DataLoader {
     addRequestConfig (requestId, requestConfig) {
         this._requestsMap[requestId] = requestConfig;
     }
-    getRequestDef({ requestId, params = {} }) {
+    getRequestDef({ requestId, params = {}, headers = {} }) {
         const requestConfig = this._requestsMap[requestId];
         const { url, method = "GET", paramParser = {} } = requestConfig;
 
         let requestUrl = (typeof(url) === "function") ? url(params) : url;
+        let reqMethod = method.toLowerCase();
 
         let requestMetadata = {
-            method: method
+            method: (reqMethod === "form_post" || reqMethod === "upload") ? "post" : method,
+            headers: {...this._commonHeaders, ...headers}
         };
 
-        if (method.toLowerCase() === "get") {
+
+        if (reqMethod === "get") {
             requestUrl = `${url}?${utils.getQueryParams(params)}`;
-        } else {
+        } else  if (["post", "delete", "put", "patch"].indexOf(reqMethod) > -1) {
+            requestMetadata.body = JSON.stringify(params);
+        } else if (reqMethod === "form_post" || reqMethod === "upload") {
             const formData = new FormData();
             for (const key in params) {
                 formData.append(key, params[key]);

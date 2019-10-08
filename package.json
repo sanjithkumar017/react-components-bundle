@@ -1,6 +1,6 @@
 {
   "name": "react-components-bundle",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "React components library",
   "keywords": [
     "react components",
@@ -21,7 +21,7 @@
     "build-storybook": "build-storybook",
     "watch-build": "babel src -d lib --watch",
     "build": "babel src -d lib",
-    "publish-package": "npm run build && npm run copypackage && cd lib && npm publish",
+    "publish": "npm run build && npm run copypackage && cd lib && npm publish",
     "link": "npm run copypackage && cd lib && npm link",
     "copypackage": "cp -rf package.json Readme.md lib"
   },

@@ -7,7 +7,8 @@ import {
     Input,
     Dropdown,
     Table,
-    TabsComponent
+    TabsComponent,
+    NotificationComponent
 } from "./components";
 
 import { 
@@ -33,6 +34,7 @@ export {
     DataLoader,
     Table,
     TabsComponent,
+    NotificationComponent,
     dataLoader,
     utils
 };
