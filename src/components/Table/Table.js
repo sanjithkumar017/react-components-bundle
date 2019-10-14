@@ -11,6 +11,10 @@ const StyledHeaderCell = styled.th`
     background-color: #125c7f;
     color: #FFF;
     font-weight: normal;
+
+    &.expand-column {
+        width: 50px;
+    }
 `;
 
 const StyledTableRow = styled.tr`
@@ -23,13 +27,25 @@ const StyledTableRow = styled.tr`
     &.parent-row {
         cursor: pointer;
     }
+
+    .expand-open {
+        &:before {
+            content: "▼"
+        }
+    }
+
+    .expand-close {
+        &:before {
+            content: "▶"
+        }
+    }
 `;
 
 const StyledExpandedRow = styled.tr`
     background-color: #ecf2f4;
 `;
 
-const getTDValue = ({ columnValue, rowData, columnConfig, tdProps = {}}) => {
+const getTDValue = ({ columnValue, rowData = {}, columnConfig = {}, tdProps = {}}) => {
     const { key, valueFormatter, ColumnComponent, componentProps = {} } = columnConfig;
     let tdValue = columnValue;
 
@@ -52,6 +68,17 @@ const ExpandableTR = (props) => {
 
     return (<Fragment>
         <StyledTableRow className="parent-row" even={isEven}>
+            {/* add column for expand toggle icon */}
+            {getTDValue({
+                columnValue: "",
+                columnConfig: {
+                    key: "expandIcon"
+                },
+                tdProps: {
+                    onClick: toggleExpanded,
+                    className: isExpanded ? "expand-open" : "expand-close"
+                }
+            })}
             {columnConfigs.map(configObj => {
                 const { key } = configObj;
                 return getTDValue({
@@ -65,7 +92,8 @@ const ExpandableTR = (props) => {
             })}
         </StyledTableRow>
         {isExpanded && <StyledExpandedRow className="expanded-row">
-            <td colSpan={columnConfigs.length}>
+            {/* +1 is to accomodate the expand toggle icon column */}
+            <td colSpan={columnConfigs.length + 1}>
                 <ExpandedRowComponent parentRecord={rowData} />
             </td>
         </StyledExpandedRow>}
@@ -92,11 +120,11 @@ const Table = (props) => {
         className,
         records,
         columnConfigs,
-        expandableTable,
+        isExpandableTable,
         ExpandedRowComponent
     } = props;
 
-    const RowComponent = expandableTable ? ExpandableTR : TR;
+    const RowComponent = isExpandableTable ? ExpandableTR : TR;
 
     // TODO : Handle no data available case
     // TODO : Add pagination support
@@ -104,6 +132,8 @@ const Table = (props) => {
     return (<StyledTable className={className}>
         <thead>
             <tr>
+                {/* add empty column for expand icon */}
+                {isExpandableTable && <StyledHeaderCell key="expandIcon" className="expand-column"></StyledHeaderCell>}
                 {columnConfigs.map(columnObj => {
                     const { key, label } = columnObj;
                     return (<StyledHeaderCell key={key}>{label}</StyledHeaderCell>);
@@ -128,7 +158,7 @@ Table.propTypes = {
     /** Array containing the table columns config */
     columnConfigs: PropTypes.array.isRequired,
     /** set to "true" if table rows are expandable */
-    expandableTable: PropTypes.bool,
+    isExpandableTable: PropTypes.bool,
     /** Component to be rendered on expanding a row */
     ExpandedRowComponent: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
@@ -138,7 +168,7 @@ Table.propTypes = {
 
 Table.defaultProps = {
     className: "",
-    expandableTable: false
+    isExpandableTable: false
 }
 
 export default Table;
