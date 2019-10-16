@@ -6,11 +6,12 @@ import List from "../List";
 import { FormContext } from "./Form";
 import FormElementWrapper from "./FormElementWrapper";
 
-const SelectArrow = styled.span`
+export const SelectArrow = styled.span`
     float: right;
     font-size: 12px;
     color:  #96a9bc;
     margin-right: 12px;
+    margin-left: 8px;
 
     &:after {
         content: "\u25BC";
@@ -65,8 +66,9 @@ export const DefaultDropdownItem = (props) => {
 
 const Dropdown = (props) => {
     const { 
-        label, 
-        name, 
+        label,
+        showLabel, 
+        name,
         renderSelectionSummary, 
         className, 
         value, 
@@ -93,19 +95,17 @@ const Dropdown = (props) => {
             if (selected.indexOf(id) === -1) {
                 selected.push(id);
                 typeof(onValueChange) === "function" && onValueChange(name, selected);
+                typeof(onChange) === "function" && onChange(selected);
             }
         } else {
             selected = [id];
             typeof(onValueChange) === "function" && onValueChange(name, id);
+            typeof(onChange) === "function" && onChange(id);
             /* close the dropdown */
             inlineModalRef.current.hideModal()
         }
 
         setSelected(selected);
-
-        if (typeof(onChange) === "function") {
-            onChange(selected);
-        }
     }
 
     const selectedList = getSelectedList(options, selected, idAttribute);
@@ -113,7 +113,7 @@ const Dropdown = (props) => {
     // TODO : add search feature
 
     return (<FormElementWrapper className={className} appearance={appearance}>
-        <label className="form-el-label" htmlFor={name}>{label}</label>
+        {showLabel && <label className="form-el-label" htmlFor={name}>{label}</label>}
         <InlineModal className="form-el" ref={inlineModalRef}>
             <InlineModalActivator>
                 {renderSelectionSummary({
@@ -132,6 +132,8 @@ const Dropdown = (props) => {
 Dropdown.propTypes = {
     /** Label for the dropdown element */
     label: PropTypes.string,
+    /** indicates whether to show or hide label */
+    showLabel: PropTypes.bool,
     /** Unique ID for the input element */
     name: PropTypes.string.isRequired,
     /** Label for dropdown activator */
@@ -158,12 +160,13 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
     value: "",
     label: "",
+    showLabel: true,
     multiSelect: false,
     className: "",
     idAttribute: "id",
     noSelectionLabel: "Select",
     /* Define the appearance of the form element. Accepted values are either "inline" or "block" */
-    appearance: PropTypes.oneOf(["inline", "block"]),
+    appearance: "inline",
     DropdownItem: DefaultDropdownItem,
     renderSelectionSummary: defaultRenderSelectionSummary
 };

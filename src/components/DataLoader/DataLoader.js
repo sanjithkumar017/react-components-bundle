@@ -18,11 +18,12 @@ const loadData = (requests) => {
 
 const DataLoader = (props) => {
     const [ isLoading, setIsLoading ] = useState(true);
-    const dataRef = React.useRef()
+    const dataRef = React.useRef();
     const { className, children, Loader, requests, onDataLoaded, onDataFailed } = props;
 
     const renderLoader = () => {
-        return Loader || DefaultLoader;
+        const LoaderComponent = Loader || DefaultLoader;
+        return <LoaderComponent />;
     };
 
     const renderChildren = () => {

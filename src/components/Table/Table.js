@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Component, Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import utils from "../../core/utils";
@@ -44,6 +44,14 @@ const StyledTableRow = styled.tr`
 const StyledExpandedRow = styled.tr`
     background-color: #ecf2f4;
 `;
+
+const StyledNoDataWrapper = styled.div`
+    text-align: center;
+`;
+
+const DefaultNoDataComponent = () => {
+    return (<StyledNoDataWrapper>No data found</StyledNoDataWrapper>)
+};
 
 const getTDValue = ({ columnValue, rowData = {}, columnConfig = {}, tdProps = {}}) => {
     const { key, valueFormatter, ColumnComponent, componentProps = {} } = columnConfig;
@@ -120,36 +128,39 @@ const Table = (props) => {
         className,
         records,
         columnConfigs,
+        idAttribute,
         isExpandableTable,
-        ExpandedRowComponent
+        ExpandedRowComponent,
+        NoDataComponent
     } = props;
 
     const RowComponent = isExpandableTable ? ExpandableTR : TR;
-
-    // TODO : Handle no data available case
-    // TODO : Add pagination support
-
-    return (<StyledTable className={className}>
-        <thead>
-            <tr>
-                {/* add empty column for expand icon */}
-                {isExpandableTable && <StyledHeaderCell key="expandIcon" className="expand-column"></StyledHeaderCell>}
-                {columnConfigs.map(columnObj => {
-                    const { key, label } = columnObj;
-                    return (<StyledHeaderCell key={key}>{label}</StyledHeaderCell>);
+    
+    if (records.length === 0) {
+        return (<NoDataComponent />);
+    } else {
+        return (<StyledTable className={className}>
+            <thead>
+                <tr>
+                    {/* add empty column for expand icon */}
+                    {isExpandableTable && <StyledHeaderCell key="expandIcon" className="expand-column"></StyledHeaderCell>}
+                    {columnConfigs.map(columnObj => {
+                        const { key, label } = columnObj;
+                        return (<StyledHeaderCell key={key}>{label}</StyledHeaderCell>);
+                    })}
+                </tr>
+            </thead>
+            <tbody>
+                {records.map((rowData, index)=> {
+                    return <RowComponent key={rowData[idAttribute]} 
+                                        isEven={utils.isEven(index)}
+                                        rowData={rowData} 
+                                        columnConfigs={columnConfigs} 
+                                        ExpandedRowComponent={ExpandedRowComponent} />
                 })}
-            </tr>
-        </thead>
-        <tbody>
-            {records.map((rowData, index)=> {
-                return <RowComponent key={rowData.id} 
-                                    isEven={utils.isEven(index)}
-                                    rowData={rowData} 
-                                    columnConfigs={columnConfigs} 
-                                    ExpandedRowComponent={ExpandedRowComponent} />
-            })}
-        </tbody>
-    </StyledTable>)
+            </tbody>
+        </StyledTable>)
+    }
 };
 
 Table.propTypes = {
@@ -157,18 +168,29 @@ Table.propTypes = {
     records: PropTypes.array,
     /** Array containing the table columns config */
     columnConfigs: PropTypes.array.isRequired,
+    /** ID attribute key to use when rendering the dropdown items */
+    idAttribute: PropTypes.string,
     /** set to "true" if table rows are expandable */
     isExpandableTable: PropTypes.bool,
     /** Component to be rendered on expanding a row */
     ExpandedRowComponent: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
+        PropTypes.instanceOf(Component),
         PropTypes.func
-    ])
+    ]),
+    /** Component to be rendered if the table has no data */
+    NoDataComponent: PropTypes.oneOfType([
+        PropTypes.instanceOf(Element),
+        PropTypes.instanceOf(Component),
+        PropTypes.func
+    ]),
 }
 
 Table.defaultProps = {
     className: "",
-    isExpandableTable: false
-}
+    idAttribute: "id",
+    isExpandableTable: false,
+    NoDataComponent: DefaultNoDataComponent
+};
 
 export default Table;
