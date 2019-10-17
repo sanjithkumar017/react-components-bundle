@@ -188,6 +188,7 @@ Table.propTypes = {
 
 Table.defaultProps = {
     className: "",
+    records: [],
     idAttribute: "id",
     isExpandableTable: false,
     NoDataComponent: DefaultNoDataComponent

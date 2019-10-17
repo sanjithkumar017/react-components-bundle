@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import styled  from "styled-components";
 import PropTypes from "prop-types";
 import Promise from "bluebird";
 import dequal from "dequal";
 import dataLoader from "../../core/dataLoader";
 
+const StyledLoader = styled.div`
+    text-align: center;
+`;
+
 const DefaultLoader = () => {
-    return <div>Loading...</div>;
+    return (<StyledLoader>Loading...</StyledLoader>);
 };
 
 const loadData = (requests) => {
