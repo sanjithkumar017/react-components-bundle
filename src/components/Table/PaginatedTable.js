@@ -29,27 +29,27 @@ const PaginatedTable = (props) => {
         ...restProps
     } = props;
 
+    const total = totalRecords || records.length;
     const [ pageConfig, setPageConfig ] = useState({
         perPageCount: pageSizeList[0].id,
-        pageNo: 1,
-        total: totalRecords || records.length
+        pageNo: 1
     });
-    const { pageNo, total } = pageConfig;
+    const { perPageCount, pageNo } = pageConfig;
 
     let finalRecords = paginationType === "SERVER" ? records : getPageRecords(records, pageConfig);
 
     const requests = [{
         requestId: requestId,
         params: {
+            ...restProps,
             page: pageNo,
-            count: total,
-            ...restProps
+            count: perPageCount
         }
     }];
 
     const paginationComponent = <PaginationComponent pageSizeList={pageSizeList} 
                             onPageConfigChanged={setPageConfig} 
-                            pageConfig={pageConfig} />
+                            pageConfig={{...pageConfig, total: total}} />
 
     const wrappedComponent =  (<div className={className}>
         {paginationPosition === "TOP" && paginationComponent}
