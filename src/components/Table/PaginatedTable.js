@@ -69,7 +69,7 @@ const PaginatedTable = (props) => {
 
 PaginatedTable.propTypes = {
     /** Array containing table row data */
-    records: PropTypes.array,
+    records: PropTypes.array.isRequired,
     /** Array containing the table columns config */
     columnConfigs: PropTypes.array.isRequired,
     /** list of supported page sizes  */

@@ -165,7 +165,7 @@ const Table = (props) => {
 
 Table.propTypes = {
     /** Array containing table row data */
-    records: PropTypes.array,
+    records: PropTypes.array.isRequired,
     /** Array containing the table columns config */
     columnConfigs: PropTypes.array.isRequired,
     /** ID attribute key to use when rendering the dropdown items */
