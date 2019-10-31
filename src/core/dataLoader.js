@@ -31,7 +31,7 @@ class DataLoader {
 
 
         if (reqMethod === "get") {
-            requestUrl = `${url}?${utils.getQueryParams(params)}`;
+            requestUrl = `${requestUrl}?${utils.getQueryParams(params)}`;
         } else  if (["post", "delete", "put", "patch"].indexOf(reqMethod) > -1) {
             requestMetadata.body = JSON.stringify(params);
         } else if (reqMethod === "form_post" || reqMethod === "upload") {
