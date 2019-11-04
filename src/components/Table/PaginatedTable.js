@@ -21,6 +21,8 @@ const PaginatedTable = (props) => {
         paginationPosition,
         paginationType,
         requestId,
+        pageNoKey,
+        perPageKey,
         pageSizeList,
         totalRecords,
         isExpandableTable,
@@ -38,12 +40,13 @@ const PaginatedTable = (props) => {
 
     let finalRecords = paginationType === "SERVER" ? records : getPageRecords(records, pageConfig);
 
+
     const requests = [{
         requestId: requestId,
         params: {
-            ...restProps,
-            page: pageNo,
-            count: perPageCount
+            [pageNoKey]: pageNo,
+            [perPageKey]: perPageCount,
+            ...utils.omit(restProps, ["NoDataComponent"])
         }
     }];
 
@@ -68,6 +71,7 @@ const PaginatedTable = (props) => {
 };
 
 PaginatedTable.propTypes = {
+    /** Extends Table properties */
     ...Table.propTypes,
     /** list of supported page sizes  */
     pageSizeList: PropTypes.array,
@@ -77,8 +81,12 @@ PaginatedTable.propTypes = {
     paginationPosition: PropTypes.oneOf(["TOP", "BOTTOM"]),
     /** CLIENT side pagination or SERVER side pagination */
     paginationType: PropTypes.oneOf(["CLIENT", "SERVER"]),
-    /** If SERVER side pagination, the ID of the request to call */
-    requestId: PropTypes.string
+    /** [SERVER side pagination] the ID of the request to call */
+    requestId: PropTypes.string,
+    /** [SERVER side pagination] key to send the page number value in, to the API */
+    pageNoKey: PropTypes.string,
+    /** [SERVER side pagination] key to send the page count value in, to the API */
+    perPageKey: PropTypes.string
 }
 
 PaginatedTable.defaultProps = {
@@ -97,7 +105,9 @@ PaginatedTable.defaultProps = {
         name: "100"
     }],
     paginationPosition: "TOP",
-    paginationType: "CLIENT"
+    paginationType: "CLIENT",
+    pageNoKey: "page",
+    perPageKey: "count"
 };
 
 export default PaginatedTable;

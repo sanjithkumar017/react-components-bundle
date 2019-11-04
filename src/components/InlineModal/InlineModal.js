@@ -1,38 +1,5 @@
 import React, { forwardRef, useState, useRef, useEffect, useImperativeHandle } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-
-const StyledInlineModal = styled.div`
-    position: relative;
-
-    &.hover-open {
-        .inline-modal-body {
-            display: none;
-        }
-    
-        &:hover {
-            .inline-modal-body {
-                display: block;
-            }
-        }
-    }
-`;
-
-const StyledInlineModalBtn = styled.div`
-    display: inline-block;
-    background: #FFF;
-    border: 1px solid #eee;
-    padding: 10px;
-    border-radius: 3px;
-    cursor: pointer;
-`;
-
-const StyledInlineModalBody = styled.div`
-    position: absolute;
-    background: #FFF;
-    border: 1px solid #efeeee;
-    box-shadow: 0 9px 12px 0 rgba(0,0,0,0.15);
-`;
 
 export const InlineModalActivator = (props) => {
     return props.children;
@@ -92,10 +59,10 @@ let InlineModal = (props, ref) => {
         }
     }));
 
-    return (<StyledInlineModal className={inlineModalClassName} ref={inlineModalRef}>
-        <StyledInlineModalBtn {...activatorProps} className="inline-modal-btn">{children[0]}</StyledInlineModalBtn>
-        {showModalBody && <StyledInlineModalBody className="inline-modal-body">{children[1]}</StyledInlineModalBody>}
-    </StyledInlineModal>);
+    return (<div className={inlineModalClassName} ref={inlineModalRef}>
+        <div {...activatorProps} className="RCB-inline-modal-btn">{children[0]}</div>
+        {showModalBody && <div className="RCB-inline-modal-body">{children[1]}</div>}
+    </div>);
 }
 
 InlineModal = forwardRef(InlineModal);

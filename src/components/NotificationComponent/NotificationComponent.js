@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const NotificationComponent = (props) => {
     const { appearance, children } = props;
 
-    return (<div className={`notif notif-${appearance}`}>{children}</div>);
+    return (<div className={`RCB-notif RCB-notif-${appearance}`}>{children}</div>);
 };
 
 NotificationComponent.propTypes = {

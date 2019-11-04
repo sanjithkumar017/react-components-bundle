@@ -4,6 +4,13 @@ import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
 import { addReadme } from 'storybook-readme';
 import "../public/css/storybook.scss";
+import "../src/components/Button/button.css";
+import "../src/components/InlineModal/inlineModal.css";
+import "../src/components/Form/form.css";
+import "../src/components/List/list.css";
+import "../src/components/Table/table.css";
+import "../src/components/TabsComponent/tabs.css";
+import "../src/components/NotificationComponent/notificationComponent.css";
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/components', true, /\.stories\.js$/);

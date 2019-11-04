@@ -1,29 +1,12 @@
 import React from 'react';
 import { storiesOf } from "@storybook/react";
 
+import { FRUITS_LIST } from "../../../public/Constants";
 import List from "./List";
-
-const fruitsList = [{
-    id: 1,
-    name: "Banana"
-}, {
-    id: 2,
-    name: "Apple"
-}, {
-    id: 3,
-    name: "Kiwi"
-}, {
-    id: 4,
-    name: "Grapes"
-}, {
-    id: 5,
-    name: "Pineapple"
-}];
-
 
 storiesOf("List", module)
     .add("Simple Usage", () => {
-        return (<List items={fruitsList} />)
+        return (<List items={FRUITS_LIST} />)
     })
     .add("Custom ListItem", () => {
         const ListItem = ({ itemData }) => {
@@ -32,5 +15,5 @@ storiesOf("List", module)
             return (<li>{`Custom ListItem ---> ${name}`}</li>)
         };
 
-        return (<List items={fruitsList} ListItem={ListItem} />)
+        return (<List items={FRUITS_LIST} ListItem={ListItem} />)
     });

@@ -1,17 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-
-const StyledList = styled.ul`
-    margin: 0;
-    padding: 0;
-`;
 
 const ListItem = (props) => {
     let { itemData = {} } = props;
     let { name } = itemData;
 
-    return (<li className="list-item">{name}</li>);
+    return (<li className="RCB-list-item">{name}</li>);
 }
 
 const List = (props) => {
@@ -23,9 +17,9 @@ const List = (props) => {
         ...restProps
     } = props;
 
-    return (<StyledList className={`list ${className}`}>
+    return (<ul className={`RCB-list ${className}`}>
         {items.map(itemData => <ListItem itemData={itemData} key={itemData[idAttribute]} idAttribute={idAttribute} {...restProps} />)}
-    </StyledList>);
+    </ul>);
 }
 
 List.propTypes = {

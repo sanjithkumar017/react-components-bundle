@@ -20,6 +20,17 @@ const utils = {
             start: startIndex,
             end: endIndex
         };
+    },
+    omit: function(object = {}, omitKeys = []) {
+        let newObject = {};
+
+        for (let key in object) {
+            if (omitKeys.indexOf(key) === -1) {
+                newObject[key] = object[key];
+            }
+        }
+
+        return newObject;
     }
 }
 

@@ -1,37 +1,9 @@
 import React, { useState, useContext, useRef } from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
 import InlineModal, { InlineModalActivator, InlineModalBody } from "../InlineModal";
 import List from "../List";
 import { FormContext } from "./Form";
 import FormElementWrapper from "./FormElementWrapper";
-
-export const SelectArrow = styled.span`
-    float: right;
-    font-size: 12px;
-    color:  #96a9bc;
-    margin-right: 12px;
-    margin-left: 8px;
-
-    &:after {
-        content: "\u25BC";
-        vertical-align: middle;
-    }
-`;
-
-const DDListItem = styled.li`
-    list-style-type: none;
-    padding: 10px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #eee;
-    }
-
-    ${props => props.selected && css`
-        background-color: #eee;
-    `}
-`;
 
 const getSelectedList = (options = [], selectedIds = [], idAttribute) => {
     return selectedIds.map(id => {
@@ -49,7 +21,7 @@ const defaultRenderSelectionSummary = ({selectedItems = [], multiSelect, noSelec
         summaryString = selectedCount ? selectedItems[0]["name"] : noSelectionLabel;
     }
 
-    return (<div>{summaryString}<SelectArrow className="select-arrow"></SelectArrow></div>);
+    return (<div>{summaryString}<span className="RCB-select-arrow"></span></div>);
 };
 
 export const DefaultDropdownItem = (props) => {
@@ -58,10 +30,11 @@ export const DefaultDropdownItem = (props) => {
     const idValue = itemData[idAttribute];
 
     const isSelected = selected.indexOf(idValue) === -1 ? false : true;
+    const className = "RCB-list-item " + (isSelected) ? "selected" : ""
 
-    return (<DDListItem onClick={() => selectItem(itemData[idAttribute])} className="list-item" selected={isSelected}>
+    return (<li onClick={() => selectItem(itemData[idAttribute])} className={className}>
         {name}
-    </DDListItem>);
+    </li>);
 };
 
 const Dropdown = (props) => {
@@ -112,9 +85,9 @@ const Dropdown = (props) => {
 
     // TODO : add search feature
 
-    return (<FormElementWrapper className={className} appearance={appearance}>
-        {showLabel && <label className="form-el-label" htmlFor={name}>{label}</label>}
-        <InlineModal className="form-el" ref={inlineModalRef}>
+    return (<FormElementWrapper className={`RCB-dropdown ${className}`} appearance={appearance}>
+        {showLabel && <label className="RCB-form-el-label" htmlFor={name}>{label}</label>}
+        <InlineModal className="RCB-form-el" ref={inlineModalRef}>
             <InlineModalActivator>
                 {renderSelectionSummary({
                     selectedItems: selectedList,

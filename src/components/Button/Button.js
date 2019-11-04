@@ -1,48 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
-
-const StyledButton = styled.button`
-    border-radius: 3px;
-    cursor: pointer;
-    
-    ${props => props.appearance === "default" && css`
-        &:hover {
-            background: #f3f3f3;
-        }
-    `}
-
-    ${props => props.appearance === "primary" && css`
-        background: #1fa7fd;
-        color: #FFF;
-        border: 0;
-
-        &:hover {
-            background: #208dd2;
-        }
-    `}
-
-    ${props => props.appearance === "secondary" && css`
-        background: #FFF;
-        border: 1px solid #95c7e7;
-
-        &:hover {
-            background: #eef8ff;
-        }
-    `}
-
-    ${props => props.size === "small" && css`
-        padding: 6px 8px;
-    `}
-
-    ${props => props.size === "medium" && css`
-        padding: 10px 15px;
-    `}
-
-    ${props => props.size === "large" && css`
-        padding: 15px 22px;
-    `}
-`;
 
 /** ButtonAppearance enum */
 export const ButtonAppearance = {
@@ -60,11 +17,11 @@ export const ButtonSize = {
 
 const Button = (props) => {
     const { children, className, loading, disabled, appearance, size, onClick } = props;
-    const btnClassName = `${appearance}-btn ${size} ${className}` + (loading ? " loading" : "");
+    const btnClassName = `RCB-btn RCB-btn-${appearance} RCB-btn-${size} ${className}` + (loading ? " loading" : "");
 
-    return (<StyledButton className={btnClassName} appearance={appearance} size={size} disabled={disabled} onClick={onClick}>
+    return (<button className={btnClassName} disabled={disabled} onClick={onClick}>
         {children}
-    </StyledButton>);
+    </button>);
 }
 
 Button.propTypes = {

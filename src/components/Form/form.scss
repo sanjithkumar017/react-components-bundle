@@ -1,0 +1,48 @@
+.RCB {
+    &-form-el {
+        &-inline {
+            margin: 20px 0;
+
+            .RCB-form-el-label {
+                margin-right: 15px;
+            }
+        }
+
+        &-block {
+            margin: 20px 0;
+
+            .RCB-form-el-label {
+                display: block;
+            }
+        }
+    }
+
+    &-dropdown {
+        .RCB-list-item {
+            list-style-type: none;
+            padding: 10px;
+            cursor: pointer;
+    
+            &:hover {
+                background-color: #eee;
+            }
+    
+            &.selected {
+                background-color: #eee;
+            }
+        }
+    }
+
+    &-select-arrow {
+        float: right;
+        font-size: 12px;
+        color:  #96a9bc;
+        margin-right: 12px;
+        margin-left: 8px;
+    
+        &:after {
+            content: "\u25BC";
+            vertical-align: middle;
+        }
+    }
+}

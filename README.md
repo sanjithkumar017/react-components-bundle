@@ -1,4 +1,3 @@
-
 # react-components-bundle
 
 ## Using the components library
@@ -13,18 +12,20 @@ Import the required components
 
 ```
 import Button from "react-components-bundle/components/Button";
+```
 
-// or less ideally
+Or less ideally (as this will include all components that you might not use as well)
+```
 import { Button } from "react-components-bundle";
 ```
 
-## Overriding CSS
+## Using CSS
 
-react-components-bundle is made using [styled-components](https://www.styled-components.com/).
+You can import the individual files for each of the components like below:
 
-You can override CSS in the following 2 ways:
-
-1) Extend the styled-component
+```
+import "react-components-bundle/components/Button/button.css";
+```
 
 ## Setting the project up for development
 
@@ -40,11 +41,19 @@ Install the npm packages using the following command
 npm install
 ```
 
-Start the build using the following command
+Start the JS build with watcher using the following command
 
 ```
-npm run build
+npm run build -- --watch
 ```
+
+To watch SCSS files & compile them to CSS use the following command
+
+```
+npm run scss -- --watch
+```
+
+**Note:** Prefix all the CSS classnames with namespace `"RCB-"`
 
 ### Viewing the components
 
