@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const FormElementWrapper = (props) => {
     const { className, children, appearance } = props;
 
-    return (<div className={`RCB-form-el RCB-form-el-${appearance} ${className}`}>
+    return (<div className={`RCB-form-el-cont RCB-form-el-${appearance} ${className}`}>
         {children}
     </div>);
 };

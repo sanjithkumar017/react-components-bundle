@@ -40,14 +40,16 @@ const PaginatedTable = (props) => {
 
     let finalRecords = paginationType === "SERVER" ? records : getPageRecords(records, pageConfig);
 
+    let extraParams = utils.omit(restProps, ["NoDataComponent", pageNoKey, perPageKey]);
+    let requestParams = {
+        [pageNoKey]: pageNo,
+        [perPageKey]: perPageCount,
+        ...extraParams
+    };
 
     const requests = [{
         requestId: requestId,
-        params: {
-            [pageNoKey]: pageNo,
-            [perPageKey]: perPageCount,
-            ...utils.omit(restProps, ["NoDataComponent"])
-        }
+        params: requestParams
     }];
 
     const paginationComponent = <PaginationComponent pageSizeList={pageSizeList} 

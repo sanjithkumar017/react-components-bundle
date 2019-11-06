@@ -40,7 +40,7 @@ const TabsComponent = (props) => {
         }
     }
 
-    return (<div className={`tabs-cont ${className}`}>
+    return (<div className={`RCB-tabs-cont ${className}`}>
         <List items={items} ListItem={TabTitleItem} selected={selected} changeTab={changeTab} />
         <List items={items} ListItem={TabContentItem} selected={selected} />
     </div>)

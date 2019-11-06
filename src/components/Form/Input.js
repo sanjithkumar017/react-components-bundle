@@ -26,7 +26,7 @@ const Input = (props) => {
         id: name,
         defaultValue,
         placeholder,
-        className: "form-el",
+        className: "RCB-form-el",
         onChange: onInputChange
     };
 

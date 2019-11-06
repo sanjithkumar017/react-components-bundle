@@ -30,7 +30,7 @@ export const DefaultDropdownItem = (props) => {
     const idValue = itemData[idAttribute];
 
     const isSelected = selected.indexOf(idValue) === -1 ? false : true;
-    const className = "RCB-list-item " + (isSelected) ? "selected" : ""
+    const className = "RCB-list-item " + (isSelected ? "selected" : "");
 
     return (<li onClick={() => selectItem(itemData[idAttribute])} className={className}>
         {name}

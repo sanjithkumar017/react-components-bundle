@@ -1,6 +1,7 @@
 .RCB {
     &-table {
         border-collapse: collapse;
+        width: 100%;
 
         td {
             padding: 10px;
@@ -54,15 +55,15 @@
         font-size: 14px;
         padding: 5px;
 
-        .per-page-count {
+        .RCB-per-page-count {
             display: inline-block;
         }
 
-        .form-el-cont {
+        .RCB-form-el-cont {
             margin: 0;
         }
 
-        .inline-modal-btn {
+        .RCB-inline-modal-btn {
             background: transparent;
             padding: 0;
         }

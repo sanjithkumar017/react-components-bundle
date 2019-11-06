@@ -20,10 +20,11 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook",
     "scss": "node-sass src/components -o src/components --output-style compressed",
+    "publish-scss": "node-sass src/components -o lib/components --output-style compressed",
     "build": "babel src -d lib",
-    "link": "npm run copypackage && cd lib && npm link",
     "copypackage": "cp -rf package.json Readme.md lib",
-    "publish": "npm run scss && npm run build && npm run copypackage && cd lib && npm publish"
+    "link": "npm run publish-scss && npm run copypackage && cd lib && npm link",
+    "publish": "npm run publish-scss && npm run build && npm run copypackage && cd lib && npm publish"
   },
   "dependencies": {
     "@storybook/addon-a11y": "^5.1.11",
