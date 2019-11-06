@@ -2,25 +2,9 @@ import React from 'react';
 import { storiesOf } from "@storybook/react";
 import { linkTo } from '@storybook/addon-links';
 
+import { FRUITS_LIST } from "../../../public/Constants";
 import InlineModal, { InlineModalActivator, InlineModalBody } from "./InlineModal";
 import { List } from "../";
-
-const fruitsList = [{
-    id: 1,
-    name: "Banana"
-}, {
-    id: 2,
-    name: "Apple"
-}, {
-    id: 3,
-    name: "Kiwi"
-}, {
-    id: 4,
-    name: "Grapes"
-}, {
-    id: 5,
-    name: "Pineapple"
-}]
 
 storiesOf("InlineModal", module)
     .add("Simple Usage", () => {
@@ -29,7 +13,7 @@ storiesOf("InlineModal", module)
                 <div>Select</div>
             </InlineModalActivator>
             <InlineModalBody>
-                <List items={fruitsList} showApp={linkTo("List")}/>
+                <List items={FRUITS_LIST} showApp={linkTo("List")}/>
             </InlineModalBody>
         </InlineModal>)
     }, {

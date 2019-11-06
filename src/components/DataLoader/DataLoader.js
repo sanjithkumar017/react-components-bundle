@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-import styled  from "styled-components";
+import React, { Component, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Promise from "bluebird";
 import dequal from "dequal";
 import dataLoader from "../../core/dataLoader";
 
-const StyledLoader = styled.div`
-    text-align: center;
-`;
-
 const DefaultLoader = () => {
-    return (<StyledLoader>Loading...</StyledLoader>);
+    return (<div>Loading...</div>);
 };
 
 const loadData = (requests) => {
@@ -27,7 +22,7 @@ const DataLoader = (props) => {
     const { className, children, Loader, requests, onDataLoaded, onDataFailed } = props;
 
     const renderLoader = () => {
-        const LoaderComponent = Loader || DefaultLoader;
+        const LoaderComponent = Loader;
         return <LoaderComponent />;
     };
 
@@ -74,16 +69,18 @@ DataLoader.propTypes = {
     onDataLoaded: PropTypes.func,
     /** Callback function which is called when data fetching fails */
     onDataFailed: PropTypes.func,
-    /** Provide a custom loader component */
+    /** Custom loader component */
     Loader: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
+        PropTypes.instanceOf(Component),
         PropTypes.func
     ])
 };
 
 DataLoader.defaultProps = {
     onDataLoaded: () => {},
-    onDataFailed: () => {}
+    onDataFailed: () => {},
+    Loader: DefaultLoader
 }
 
 export default DataLoader;

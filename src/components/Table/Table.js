@@ -1,56 +1,9 @@
 import React, { Component, Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
 import utils from "../../core/utils";
 
-const StyledTable = styled.table`
-    border-collapse: collapse;
-`;
-
-const StyledHeaderCell = styled.th`
-    background-color: #125c7f;
-    color: #FFF;
-    font-weight: normal;
-
-    &.expand-column {
-        width: 50px;
-    }
-`;
-
-const StyledTableRow = styled.tr`
-    ${props => props.even ? css`
-        background-color: #82bed9;
-    ` : css`
-        background-color: #dcf1fa;
-    `}
-
-    &.parent-row {
-        cursor: pointer;
-    }
-
-    .expand-open {
-        &:before {
-            content: "▼"
-        }
-    }
-
-    .expand-close {
-        &:before {
-            content: "▶"
-        }
-    }
-`;
-
-const StyledExpandedRow = styled.tr`
-    background-color: #ecf2f4;
-`;
-
-const StyledNoDataWrapper = styled.div`
-    text-align: center;
-`;
-
 const DefaultNoDataComponent = () => {
-    return (<StyledNoDataWrapper>No data found</StyledNoDataWrapper>)
+    return (<div className="RCB-no-data">No data found</div>)
 };
 
 const getTDValue = ({ columnValue, rowData = {}, columnConfig = {}, tdProps = {}}) => {
@@ -74,8 +27,10 @@ const ExpandableTR = (props) => {
         setIsExpanded(!isExpanded);
     };
 
+    const className = "RCB-tr RCB-parent-row " + (isEven ? "RCB-even-tr" : "RCB-odd-tr");
+
     return (<Fragment>
-        <StyledTableRow className="parent-row" even={isEven}>
+        <tr className={className}>
             {/* add column for expand toggle icon */}
             {getTDValue({
                 columnValue: "",
@@ -98,13 +53,13 @@ const ExpandableTR = (props) => {
                     }
                 });
             })}
-        </StyledTableRow>
-        {isExpanded && <StyledExpandedRow className="expanded-row">
+        </tr>
+        {isExpanded && <tr className="RCB-expanded-row">
             {/* +1 is to accomodate the expand toggle icon column */}
             <td colSpan={columnConfigs.length + 1}>
                 <ExpandedRowComponent parentRecord={rowData} />
             </td>
-        </StyledExpandedRow>}
+        </tr>}
     </Fragment>);
 };
 
@@ -114,13 +69,14 @@ ExpandableTR.propTypes = {
 
 const TR = (props) => {
     const { rowData, columnConfigs, isEven } = props;
+    const className = "RCB-tr " + (isEven ? "RCB-even-tr" : "RCB-odd-tr");
 
-    return (<StyledTableRow even={isEven}>
+    return (<tr className={className}>
         {columnConfigs.map(configObj => {
             const { key } = configObj;
             return getTDValue({columnValue: rowData[key], rowData, columnConfig: configObj});
         })}
-    </StyledTableRow>);
+    </tr>);
 };
 
 const Table = (props) => {
@@ -139,14 +95,14 @@ const Table = (props) => {
     if (records.length === 0) {
         return (<NoDataComponent />);
     } else {
-        return (<StyledTable className={className}>
+        return (<table className={`RCB-table ${className}`}>
             <thead>
                 <tr>
                     {/* add empty column for expand icon */}
-                    {isExpandableTable && <StyledHeaderCell key="expandIcon" className="expand-column"></StyledHeaderCell>}
+                    {isExpandableTable && <th key="expandIcon" className="RCB-th RCB-expand-column"></th>}
                     {columnConfigs.map(columnObj => {
                         const { key, label } = columnObj;
-                        return (<StyledHeaderCell key={key}>{label}</StyledHeaderCell>);
+                        return (<th className="RCB-th" key={key}>{label}</th>);
                     })}
                 </tr>
             </thead>
@@ -159,7 +115,7 @@ const Table = (props) => {
                                         ExpandedRowComponent={ExpandedRowComponent} />
                 })}
             </tbody>
-        </StyledTable>)
+        </table>)
     }
 };
 

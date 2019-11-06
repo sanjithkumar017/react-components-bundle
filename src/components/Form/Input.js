@@ -26,7 +26,7 @@ const Input = (props) => {
         id: name,
         defaultValue,
         placeholder,
-        className: "form-el",
+        className: "RCB-form-el",
         onChange: onInputChange
     };
 
@@ -36,7 +36,7 @@ const Input = (props) => {
     }
 
     return (<FormElementWrapper className={className} appearance={appearance}>
-        <label className="form-el-label" htmlFor={name}>{label}</label>
+        <label className="RCB-form-el-label" htmlFor={name}>{label}</label>
         <input {...inputProps} />
     </FormElementWrapper>);
 };
