@@ -15,7 +15,7 @@ let InlineModal = (props, ref) => {
     const { children, activatorAction, className, isModalOpen:propIsOpen } = props;
     let [ isModalOpen, setIsModalOpen ] = useState(propIsOpen);
     let activatorProps = {};
-    let inlineModalClassName = className;
+    let inlineModalClassName = `RCB-inline-modal ${className}`;
     let showModalBody = isModalOpen;
     const inlineModalRef = useRef();
 

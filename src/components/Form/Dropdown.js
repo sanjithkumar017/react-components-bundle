@@ -75,7 +75,7 @@ const Dropdown = (props) => {
             typeof(onValueChange) === "function" && onValueChange(name, id);
             typeof(onChange) === "function" && onChange(id);
             /* close the dropdown */
-            inlineModalRef.current.hideModal()
+            inlineModalRef.current.hideModal();
         }
 
         setSelected(selected);
