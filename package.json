@@ -1,6 +1,6 @@
 {
   "name": "react-components-bundle",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React components library",
   "keywords": [
     "react components",
@@ -23,8 +23,9 @@
     "publish-scss": "node-sass src/components -o lib/components --output-style compressed",
     "build": "babel src -d lib",
     "copypackage": "cp -rf package.json Readme.md lib",
-    "link": "npm run publish-scss && npm run copypackage && cd lib && npm link",
-    "publish": "npm run publish-scss && npm run build && npm run copypackage && cd lib && npm publish"
+    "copyscss": "cp -rf src/components/styles.scss lib/components",
+    "link": "npm run publish-scss && npm run copypackage && npm run copyscss && cd lib && npm link",
+    "publish": "npm run publish-scss && npm run build && npm run copypackage && npm run copyscss && cd lib && npm publish"
   },
   "dependencies": {
     "@storybook/addon-a11y": "^5.1.11",
