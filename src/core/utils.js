@@ -1,3 +1,5 @@
+let uniqueCounter = 1;
+
 const utils = {
     getQueryParams: function(params = {}) {
         let queryParams = [];
@@ -31,6 +33,9 @@ const utils = {
         }
 
         return newObject;
+    },
+    getUniqueId: function() {
+        return uniqueCounter++;
     }
 }
 

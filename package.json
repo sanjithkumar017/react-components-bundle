@@ -1,6 +1,6 @@
 {
   "name": "react-components-bundle",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "React components library",
   "keywords": [
     "react components",
@@ -14,8 +14,10 @@
   },
   "author": "Anupama H",
   "license": "ISC",
-  "sideEffects": false,
   "main": "lib/index.js",
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook",
