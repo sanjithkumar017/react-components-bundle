@@ -1,6 +1,7 @@
 import {
     Button,
     List,
+    Modal,
     InlineModal,
     DataLoader,
     Form,
@@ -26,6 +27,7 @@ export {
     ButtonAppearance,
     ButtonSize,
     List,
+    Modal,
     InlineModal,
     InlineModalActivator,
     InlineModalBody,
