@@ -10,7 +10,8 @@ import {
     Table,
     PaginatedTable,
     TabsComponent,
-    NotificationComponent
+    NotificationComponent,
+    ProgressBar
 } from "./components";
 
 import { 
@@ -39,6 +40,7 @@ export {
     PaginatedTable,
     TabsComponent,
     NotificationComponent,
+    ProgressBar,
     dataLoader,
     utils
 };

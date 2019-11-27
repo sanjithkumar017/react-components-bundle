@@ -23,6 +23,8 @@ const List = (props) => {
 }
 
 List.propTypes = {
+    /** Pass any additional classNames to List component */
+    className: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired
@@ -30,6 +32,7 @@ List.propTypes = {
 }
 
 List.defaultProps = {
+    className: "",
     items: [],
     idAttribute: "id",
     ListItem

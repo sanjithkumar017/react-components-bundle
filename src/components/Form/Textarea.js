@@ -42,6 +42,8 @@ const Textarea = (props) => {
 };
 
 Textarea.propTypes = {
+    /** Pass any additional classNames to Textarea component */
+    className: PropTypes.string,
     /** Label for the input element */
     label: PropTypes.string,
     /** Unique ID for the input element */

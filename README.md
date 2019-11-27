@@ -53,7 +53,7 @@ To watch SCSS files & compile them to CSS use the following command
 npm run scss -- --watch
 ```
 
-**Note:** Prefix all the CSS classnames with namespace `"RCB-"`
+**Note:** Prefix all the CSS classNames with namespace `"RCB-"`
 
 ### Viewing the components
 

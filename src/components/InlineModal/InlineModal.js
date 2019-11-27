@@ -68,11 +68,14 @@ let InlineModal = (props, ref) => {
 InlineModal = forwardRef(InlineModal);
 
 InlineModal.defaultProps = {
+    className: "",
     activatorAction: "click", // or "hover"
     isModalOpen: false
 };
 
 InlineModal.propTypes = {
+    /** Pass any additional classNames to InlineModal component */
+    className: PropTypes.string,
     activatorAction: PropTypes.string,
     children: (props, propName, componentName) => {
         const children = props[propName];

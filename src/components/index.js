@@ -7,6 +7,7 @@ import Form, { Input, Dropdown } from "./Form";
 import Table , { PaginatedTable } from "./Table";
 import TabsComponent from "./TabsComponent";
 import NotificationComponent from "./NotificationComponent";
+import ProgressBar from "./ProgressBar";
 
 export {
     Button,
@@ -20,5 +21,6 @@ export {
     Table,
     PaginatedTable,
     TabsComponent,
-    NotificationComponent
+    NotificationComponent,
+    ProgressBar
 };

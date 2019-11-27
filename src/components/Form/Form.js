@@ -27,7 +27,13 @@ const Form = (props) => {
 };
 
 Form.propTypes = {
+    /** Pass any additional classNames to Form component */
+    className: PropTypes.string,
     onSubmit: PropTypes.func.isRequired
-}
+};
+
+Form.defaultProps = {
+    className: ""
+};
 
 export default Form;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const NotificationComponent = (props) => {
     const [ hideMessage, setHideMessage ] = useState(false);
-    const { appearance, children, messageId, fadeOut, fadeOutTime} = props;
+    const { appearance, children, messageId, fadeOut, fadeOutTime, className } = props;
     let fadeOutMessage = typeof(fadeOut) !== "undefined" ? fadeOut : appearance === "success";
     let timerID;
 
@@ -32,11 +32,13 @@ const NotificationComponent = (props) => {
     if (hideMessage) {
         return null;
     } else {
-        return (<div className={`RCB-notif RCB-notif-${appearance}`}>{children}</div>);
+        return (<div className={`RCB-notif RCB-notif-${appearance} ${className}`}>{children}</div>);
     }
 };
 
 NotificationComponent.propTypes = {
+    /** Pass any additional classNames to Notification component */
+    className: PropTypes.string,
     /* Unique ID to represent this particular message */
     messageId: PropTypes.number.isRequired,
     /* Appearance of the notification message */
@@ -48,6 +50,7 @@ NotificationComponent.propTypes = {
 };
 
 NotificationComponent.defaultProps = {
+    className: "",
     appearance: "success",
     fadeOutTime: 3000
 };

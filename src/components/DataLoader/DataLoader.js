@@ -63,6 +63,8 @@ const DataLoader = (props) => {
 };
 
 DataLoader.propTypes = {
+    /** Pass any additional classNames to DataLoader component */
+    className: PropTypes.string,
     /** Requests array */
     requests: PropTypes.array.isRequired,
     /** Callback function which is called when data is loaded */
@@ -78,6 +80,7 @@ DataLoader.propTypes = {
 };
 
 DataLoader.defaultProps = {
+    className: "",
     onDataLoaded: () => {},
     onDataFailed: () => {},
     Loader: DefaultLoader

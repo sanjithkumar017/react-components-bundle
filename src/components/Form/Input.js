@@ -42,6 +42,8 @@ const Input = (props) => {
 };
 
 Input.propTypes = {
+    /** Pass any additional classNames to Input component */
+    className: PropTypes.string,
     /** Use it to render different input types like text, password etc. */
     type: PropTypes.string,
     /** Label for the input element */

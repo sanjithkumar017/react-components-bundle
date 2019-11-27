@@ -1,0 +1,14 @@
+.RCB {
+    &-progress-bar {
+        width: 100%;
+        position: relative;
+        background: #ccc;
+    }
+
+    &-progress-value {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        background: #3d9565;
+    }
+}

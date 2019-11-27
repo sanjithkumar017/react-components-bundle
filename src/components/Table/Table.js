@@ -120,6 +120,8 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
+    /** Pass any additional classNames to Table component */
+    className: PropTypes.string,
     /** Array containing table row data */
     records: PropTypes.array.isRequired,
     /** Array containing the table columns config */

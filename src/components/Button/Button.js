@@ -25,7 +25,7 @@ const Button = (props) => {
 }
 
 Button.propTypes = {
-    /** Pass any additional classnames to Button component */
+    /** Pass any additional classNames to Button component */
     className: PropTypes.string,
     /** Boolean indicating whether the button should render as disabled */
     disabled: PropTypes.bool,

@@ -6,15 +6,19 @@
         cursor: pointer;
 
         &.selected {
+            background: #FFF;
             font-weight: bold;
-            border: 1px solid #CCC;
+            border: 1px solid #cacaca;
             border-bottom: 0;
+            position: relative;
+            z-index: 1;
+            bottom: -1px;
         }
     }
 
     &-tab-content {
         list-style-type: none;
-        border: 1px solid #CCC;
+        border: 1px solid #cacaca;
         padding: 10px;
         display: none;
 

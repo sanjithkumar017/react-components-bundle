@@ -103,6 +103,8 @@ const Dropdown = (props) => {
 };
 
 Dropdown.propTypes = {
+    /** Pass any additional classNames to Dropdown component */
+    className: PropTypes.string,
     /** Label for the dropdown element */
     label: PropTypes.string,
     /** indicates whether to show or hide label */
@@ -131,6 +133,7 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
+    className: "",
     value: "",
     label: "",
     showLabel: true,

@@ -3,14 +3,15 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 const ModalContent = (props) => {
-    const { 
+    const {
+        className,
         children,
         title,
         showClose,
         hideModal
     } = props;
 
-    return (<div className="RCB-modal">
+    return (<div className={`RCB-modal ${className}`}>
         <div className="RCB-modal-body">
             <div className="RCB-modal-header">
                 <span className="RCB-modal-title">{title}</span>
@@ -50,6 +51,8 @@ let Modal = (props, ref) => {
 Modal = forwardRef(Modal);
 
 Modal.propTypes = {
+    /** Pass any additional classNames to Modal component */
+    className: PropTypes.string,
     /** Header or title for the modal */
     title: PropTypes.string,
     /** indicates if the modal should be opened by default */
@@ -59,6 +62,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+    className: "",
     title: "",
     isOpen: false,
     showClose: true

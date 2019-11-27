@@ -47,6 +47,8 @@ const TabsComponent = (props) => {
 };
 
 TabsComponent.propTypes = {
+    /** Pass any additional classNames to Tabs component */
+    className: PropTypes.string,
     /** Array of tab items. Each object in array should contain {id, label, tabComponent: <Component />} */
     items: PropTypes.array.isRequired,
     /** ID of the tab item to be selected */
