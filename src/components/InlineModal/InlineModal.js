@@ -93,4 +93,6 @@ InlineModal.propTypes = {
     isModalOpen: PropTypes.bool
 };
 
+InlineModal.displayName = "InlineModal";
+
 export default InlineModal;

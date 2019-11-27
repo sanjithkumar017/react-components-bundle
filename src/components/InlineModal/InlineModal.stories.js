@@ -7,6 +7,12 @@ import InlineModal, { InlineModalActivator, InlineModalBody } from "./InlineModa
 import { List } from "../";
 
 storiesOf("InlineModal", module)
+    .addParameters({
+        info: {
+            propTables: [InlineModal, InlineModalActivator,InlineModalBody],
+            propTablesExclude: [List]
+        }
+    })
     .add("Simple Usage", () => {
         return ( <InlineModal>
             <InlineModalActivator>

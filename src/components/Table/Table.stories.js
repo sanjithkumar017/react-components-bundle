@@ -105,6 +105,11 @@ const ServerPaginatedExample = () => {
 }
 
 storiesOf("Table", module)
+    .addParameters({
+        info: {
+            propTablesExclude: [ServerPaginatedExample]
+        }
+    })
     .add("Simple Usage", () => {
         return (<Table records={FRUITS_LIST} columnConfigs={getFruitsColumnConfigs()}/>);
     })

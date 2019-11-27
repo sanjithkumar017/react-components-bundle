@@ -4,13 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
 import { addReadme } from 'storybook-readme';
 import "../public/css/storybook.scss";
-import "../src/components/Button/button.css";
-import "../src/components/InlineModal/inlineModal.css";
-import "../src/components/Form/form.css";
-import "../src/components/List/list.css";
-import "../src/components/Table/table.css";
-import "../src/components/TabsComponent/tabs.css";
-import "../src/components/NotificationComponent/notificationComponent.css";
+import "../src/components/styles.css";
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/components', true, /\.stories\.js$/);
@@ -25,7 +19,7 @@ addParameters({
 
 addDecorator(withInfo({
     inline: true, // Displays info inline vs click button to view
-    maxPropsIntoLine: 100,  //Max props to display per line in source code
+    maxPropsIntoLine: 1,  //Max props to display per line in source code
 }));
 
 /* Readme addon */
