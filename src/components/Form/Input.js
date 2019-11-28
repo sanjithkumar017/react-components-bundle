@@ -50,18 +50,19 @@ Input.propTypes = {
     label: PropTypes.string,
     /** Unique ID for the input element */
     name: PropTypes.string.isRequired,
-    /* Will be used only with onChange function, or else ignored */
+    /** Will be used only with onChange function, or else ignored */
     value: PropTypes.any,
     defaultValue: PropTypes.any,
     placeholder: PropTypes.string,
-    /* Define the appearance of the form element. Accepted values are either "inline" or "block" */
-    appearance: PropTypes.string,
-    /* Becomes a controlled component if onChange function is given */
+    /** Define the appearance of the form element. Accepted values are either "inline" or "block" */
+    appearance: PropTypes.oneOf(["inline", "block"]),
+    /** Becomes a controlled component if onChange function is given */
     onChange: PropTypes.func
 };
 
 Input.defaultProps = {
-    className: ""
+    className: "",
+    appearance: "inline"
 };
 
 export default Input;

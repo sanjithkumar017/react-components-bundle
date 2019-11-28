@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import { FormContext } from "./Form";
 import FormElementWrapper from "./FormElementWrapper";
-
-const Textarea = (props) => {
-    const { label, name, className, value, defaultValue, placeholder, appearance, onChange } = props;
+  
+const RadioList = (props) => {
+    const { options, label, name, className, value, defaultValue, appearance, onChange } = props;
     const { onValueChange } = useContext(FormContext);
 
     const onInputChange = (event) => {
@@ -20,11 +20,10 @@ const Textarea = (props) => {
     }
 
     let inputProps = {
+        type: "radio",
         label,
         name,
-        id: name,
         defaultValue,
-        placeholder,
         className: "RCB-form-el",
         onChange: onInputChange
     };
@@ -35,31 +34,42 @@ const Textarea = (props) => {
     }
 
     return (<FormElementWrapper className={className} appearance={appearance}>
-        <label className="RCB-form-el-label" htmlFor={name}>{label}</label>
-        <textarea {...inputProps} />
+        <label className="RCB-form-el-label">{label}</label>
+        {options.map(option => {
+            const { id, name } = option;
+
+            return (<Fragment>
+                <input {...inputProps} id={id} value={id} />
+                <label className="RCB-radio-label" htmlFor={id}>{name}</label>
+            </Fragment>);
+        })}
     </FormElementWrapper>);
 };
 
-Textarea.propTypes = {
-    /** Pass any additional classNames to Textarea component */
+RadioList.propTypes = {
+    /** Pass any additional classNames to Input component */
     className: PropTypes.string,
+    /** radio items list */
+    options: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        name: PropTypes.string
+    })).isRequired,
     /** Label for the input element */
     label: PropTypes.string,
     /** Unique ID for the input element */
     name: PropTypes.string.isRequired,
-    /* Will be used only with onChange function, or else ignored */
+    /** Will be used only with onChange function, or else ignored */
     value: PropTypes.any,
     defaultValue: PropTypes.any,
-    placeholder: PropTypes.string,
-    /* Define the appearance of the form element. Accepted values are either "inline" or "block" */
+    /** Define the appearance of the form element. Accepted values are either "inline" or "block" */
     appearance: PropTypes.oneOf(["inline", "block"]),
-    /* Becomes a controlled component if onChange function is given */
+    /** Becomes a controlled component if onChange function is given */
     onChange: PropTypes.func
 };
 
-Textarea.defaultProps = {
+RadioList.defaultProps = {
     className: "",
     appearance: "inline"
 };
 
-export default Textarea;
+export default RadioList;

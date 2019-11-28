@@ -86,7 +86,7 @@ To help boostrap a new component file, use the followiung steps
     - You can also do the same from the Command Palette. In this case the new file will be created in the root directory of the project.
     - Its also possible to do the other way around and create a template based on an open file. For that "right-click" on any opened file and you should see the option of the context menu.
 
-*Note:* The template will expect the Component name as a parameter
+**Note:** The template will expect the Component name as a parameter
 
 ## TODO
 

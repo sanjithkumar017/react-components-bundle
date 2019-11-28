@@ -132,7 +132,9 @@ Dropdown.propTypes = {
     /** Pass this function to customise the selection summary HTML. 
      * The array of selected item objects will be sent as props
      */
-    renderSelectionSummary: PropTypes.func
+    renderSelectionSummary: PropTypes.func,
+    /** Define the appearance of the form element. Accepted values are either "inline" or "block" */
+    appearance: PropTypes.oneOf(["inline", "block"])
 };
 
 Dropdown.defaultProps = {
@@ -144,7 +146,6 @@ Dropdown.defaultProps = {
     className: "",
     idAttribute: "id",
     noSelectionLabel: "Select",
-    /* Define the appearance of the form element. Accepted values are either "inline" or "block" */
     appearance: "inline",
     DropdownItem: DefaultDropdownItem,
     renderSelectionSummary: defaultRenderSelectionSummary
