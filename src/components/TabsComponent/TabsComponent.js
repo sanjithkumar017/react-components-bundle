@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 import List from "../List";
 
@@ -44,7 +44,11 @@ TabsComponent.propTypes = {
     /** Pass any additional classNames to Tabs component */
     className: PropTypes.string,
     /** Array of tab items. Each object in array should contain {id, label, tabComponent: <Component />} */
-    items: PropTypes.array.isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        tabComponent: PropTypes.instanceOf(Object)
+    })).isRequired,
     /** ID of the tab item to be selected */
     selectedTab: PropTypes.string,
     onTabChanged: PropTypes.func

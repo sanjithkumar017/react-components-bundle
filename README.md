@@ -67,6 +67,27 @@ npm run storybook
 
 The storybook can then be viewed at http://localhost:6006/
 
+### Creating new stories for the components
+
+To help boostrap a new component file, use the followiung steps
+
+1. Install the VS Code extension [File Templates](https://marketplace.visualstudio.com/items?itemName=brpaz.file-templates)
+2. Place the templates in the location expected by the extension
+    - In Mac,
+    ```cp ./vscode-templates/NewStoryTemplate.stories.js $HOME/Library/Application\ Support/Code/User/FileTemplates```
+
+    - In Linux,
+    ```cp ./vscode-templates/NewStoryTemplate.stories.js $HOME/.config/Code/User/FileTemplates```
+
+    - In Windows,
+    ```cp ./vscode-templates/NewStoryTemplate.stories.js C:\Users\User\AppData\Roaming\Code\User\FileTemplates```
+3. To use the templates you can do one of the following:
+    - In VSCode, right click on the folder where you want to generate the new file. You should see an option "Files : New from template". Selecting this option a list of available templates should appear. Just select your template and the file will be created.
+    - You can also do the same from the Command Palette. In this case the new file will be created in the root directory of the project.
+    - Its also possible to do the other way around and create a template based on an open file. For that "right-click" on any opened file and you should see the option of the context menu.
+
+*Note:* The template will expect the Component name as a parameter
+
 ## TODO
 
 - Minify JS / CSS

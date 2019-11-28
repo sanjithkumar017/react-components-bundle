@@ -3,6 +3,7 @@ import { addDecorator } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
 import { addReadme } from 'storybook-readme';
+import '@storybook/addon-console';
 import "../public/css/storybook.scss";
 import "../src/components/styles.css";
 

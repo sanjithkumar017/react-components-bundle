@@ -5,12 +5,6 @@ import List from "../List";
 import { FormContext } from "./Form";
 import FormElementWrapper from "./FormElementWrapper";
 
-const getSelectedList = (options = [], selectedIds = [], idAttribute) => {
-    return selectedIds.map(id => {
-        return options.find(obj => obj[idAttribute] === id);
-    });
-};
-
 const defaultRenderSelectionSummary = ({selectedItems = [], multiSelect, noSelectionLabel}) => {
     let summaryString = "";
     const selectedCount = selectedItems.length;
@@ -29,10 +23,10 @@ export const DefaultDropdownItem = (props) => {
     const { name } = itemData;
     const idValue = itemData[idAttribute];
 
-    const isSelected = selected.indexOf(idValue) === -1 ? false : true;
+    const isSelected = selected.find(obj => obj[idAttribute] === idValue) ? true : false;
     const className = "RCB-list-item " + (isSelected ? "selected" : "");
 
-    return (<li onClick={() => selectItem(itemData[idAttribute])} className={className}>
+    return (<li onClick={() => selectItem(itemData)} className={className}>
         {name}
     </li>);
 };
@@ -58,30 +52,32 @@ const Dropdown = (props) => {
     if (value) {
         initialSelected = Array.isArray(value) ? value : [value]
     }
+    /* array of selected item objects */
     let [ selected, setSelected ] = useState(initialSelected);
 
     const { onValueChange } = useContext(FormContext);
     const inlineModalRef = useRef();
 
-    const selectItem = (id) => {
+    const selectItem = (item) => {
+        const id = item[idAttribute];
+
         if (multiSelect) {
-            if (selected.indexOf(id) === -1) {
-                selected.push(id);
+            const isPresent = selected.find(obj => obj[idAttribute] === id);
+            if (!isPresent) {
+                selected.push(item);
                 typeof(onValueChange) === "function" && onValueChange(name, selected);
                 typeof(onChange) === "function" && onChange(selected);
             }
         } else {
-            selected = [id];
-            typeof(onValueChange) === "function" && onValueChange(name, id);
-            typeof(onChange) === "function" && onChange(id);
+            selected = [item];
+            typeof(onValueChange) === "function" && onValueChange(name, item);
+            typeof(onChange) === "function" && onChange(item);
             /* close the dropdown */
             inlineModalRef.current.hideModal();
         }
 
         setSelected(selected);
     }
-
-    const selectedList = getSelectedList(options, selected, idAttribute);
 
     // TODO : add search feature
 
@@ -90,7 +86,7 @@ const Dropdown = (props) => {
         <InlineModal className="RCB-form-el" ref={inlineModalRef}>
             <InlineModalActivator>
                 {renderSelectionSummary({
-                    selectedItems: selectedList,
+                    selectedItems: selected,
                     noSelectionLabel,
                     multiSelect
                 })}
@@ -114,12 +110,19 @@ Dropdown.propTypes = {
     /** Label for dropdown activator */
     noSelectionLabel: PropTypes.string,
     /** Selection items list */
-    options: PropTypes.array,
-    value: PropTypes.any,
+    options: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        name: PropTypes.string
+    })),
+    /** array of selected item objects */
+    value: PropTypes.oneOf([PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        name: PropTypes.string
+    })), ""]),
     onChange: PropTypes.func,
     /** Is dropdown multi select or single select */
     multiSelect: PropTypes.bool,
-    /** ID attribute key to use when rendering the dropdown items */
+    /** ID attribute key to use when rendering the dropdown items, if the ID attribute is other than "id" */
     idAttribute: PropTypes.string,
     /** Provide a custom element for rendering dropdown item */
     DropdownItem: PropTypes.oneOfType([

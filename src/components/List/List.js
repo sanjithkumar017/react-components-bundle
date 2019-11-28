@@ -26,9 +26,9 @@ List.propTypes = {
     /** Pass any additional classNames to List component */
     className: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
-    }))
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        name: PropTypes.string
+    })).isRequired
 }
 
 List.defaultProps = {
