@@ -17,17 +17,6 @@ const TabTitleItem = (props) => {
     </li>);
 };
 
-const TabContentItem = (props) => {
-    const { itemData, selected } = props;
-    const { id, tabComponent } = itemData;
-    const isSelected = id === selected;
-    const className = `RCB-tab-content ${isSelected ? "selected" : ""}`
-
-    return (<li className={className} selected={isSelected}>
-        {tabComponent}
-    </li>);
-};
-
 const TabsComponent = (props) => {
     const { className, items, selectedTab, onTabChanged } = props;
     const defaultSelected = selectedTab || (items[0] ? items[0].id : "");
@@ -38,11 +27,16 @@ const TabsComponent = (props) => {
         if (typeof(onTabChanged) === "function") {
             onTabChanged(id);
         }
-    }
+    };
+
+    const selecetdTabData = items.find(obj => obj.id === selected);
+    const { tabComponent } = selecetdTabData;
 
     return (<div className={`RCB-tabs-container ${className}`}>
         <List items={items} ListItem={TabTitleItem} selected={selected} changeTab={changeTab} className="RCB-tabs-header" />
-        <List items={items} ListItem={TabContentItem} selected={selected} className="RCB-tabs-content"/>
+        <div className="RCB-tab-content">
+            {tabComponent}
+        </div>
     </div>)
 };
 
