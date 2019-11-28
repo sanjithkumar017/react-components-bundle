@@ -27,7 +27,20 @@ You can import the individual files for each of the components like below:
 import "react-components-bundle/components/Button/button.css";
 ```
 
-## Setting the project up for development
+Or
+
+You can import the bundled CSS file which contains all the component's CSS like below:
+```
+import "react-components-bundle/components/styles.css";
+```
+
+## Viewing the components
+
+You can view the available components and their props using the storybook at this link:
+
+https://anupamahosad.github.io/react-components-bundle/
+
+## Setting up the project for development
 
 ### Prerequisites
 
@@ -67,9 +80,17 @@ npm run storybook
 
 The storybook can then be viewed at http://localhost:6006/
 
+### Publishing the storybook to github pages
+
+Run the following command to publish the storybook to github pages:
+
+```
+npm run deploy-storybook
+```
+
 ### Creating new stories for the components
 
-To help boostrap a new component file, use the followiung steps
+To help boostrap a new story file, use the following steps
 
 1. Install the VS Code extension [File Templates](https://marketplace.visualstudio.com/items?itemName=brpaz.file-templates)
 2. Place the templates in the location expected by the extension

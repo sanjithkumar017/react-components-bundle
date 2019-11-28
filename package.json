@@ -21,6 +21,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages",
     "scss": "node-sass src/components -o src/components --output-style compressed",
     "publish-scss": "node-sass src/components -o lib/components --output-style compressed",
     "build": "babel src -d lib",
@@ -51,6 +52,7 @@
     "@storybook/addon-links": "^5.2.6",
     "@storybook/addons": "^5.2.6",
     "@storybook/react": "^5.2.6",
+    "@storybook/storybook-deployer": "^2.8.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.1.0",
     "mini-css-extract-plugin": "^0.8.0",
