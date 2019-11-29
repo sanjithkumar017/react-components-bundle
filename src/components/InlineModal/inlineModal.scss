@@ -1,6 +1,7 @@
 .RCB {
     &-inline-modal {
         position: relative;
+        display: inline-block;
 
         &.hover-open {
             .RCB-inline-modal-body {
@@ -29,5 +30,14 @@
         background: #FFF;
         border: 1px solid #efeeee;
         box-shadow: 0 9px 12px 0 rgba(0,0,0,0.15);
+        z-index: 1;
+
+        &.RCB-align-left {
+            left: 0;
+        }
+
+        &.RCB-align-right {
+            right: 0;
+        }
     }
 }

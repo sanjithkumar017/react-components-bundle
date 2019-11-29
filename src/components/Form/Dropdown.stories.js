@@ -9,7 +9,8 @@ storiesOf("Dropdown", module)
             console.log("Selected Fruit: ", selectedFruit);
         };
 
-        return (<Dropdown name="fruit" label="Select fruit" options={FRUITS_LIST} appearance="block" onChange={onChange} />);
+        return (<Dropdown name="fruit" label="Select a fruit" options={FRUITS_LIST} halign="right"
+                    appearance="block" onChange={onChange} noSelectionLabel="Select a fruit"/>);
     }, {
         info: {
             propTables: [Dropdown]

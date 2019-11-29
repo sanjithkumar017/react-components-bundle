@@ -33,6 +33,7 @@ export const DefaultDropdownItem = (props) => {
 
 const Dropdown = (props) => {
     const { 
+        halign,
         label,
         showLabel, 
         name,
@@ -83,7 +84,7 @@ const Dropdown = (props) => {
 
     return (<FormElementWrapper className={`RCB-dropdown ${className}`} appearance={appearance}>
         {showLabel && <label className="RCB-form-el-label" htmlFor={name}>{label}</label>}
-        <InlineModal className="RCB-form-el" ref={inlineModalRef}>
+        <InlineModal className="RCB-form-el" ref={inlineModalRef} halign={halign}>
             <InlineModalActivator>
                 {renderSelectionSummary({
                     selectedItems: selected,
@@ -101,6 +102,8 @@ const Dropdown = (props) => {
 Dropdown.propTypes = {
     /** Pass any additional classNames to Dropdown component */
     className: PropTypes.string,
+    /** Horizontal alignment of the dropdown body */
+    halign: PropTypes.oneOf(["left", "right"]),
     /** Label for the dropdown element */
     label: PropTypes.string,
     /** indicates whether to show or hide label */

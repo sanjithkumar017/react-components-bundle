@@ -6,13 +6,11 @@ export const InlineModalActivator = (props) => {
 }
 
 export const InlineModalBody = (props) => {
-    return (<div>
-        {props.children}
-    </div>);
+    return props.children;
 }
 
 let InlineModal = (props, ref) => {
-    const { children, activatorAction, className, isModalOpen:propIsOpen } = props;
+    const { children, activatorAction, className, isModalOpen:propIsOpen, halign } = props;
     let [ isModalOpen, setIsModalOpen ] = useState(propIsOpen);
     let activatorProps = {};
     let inlineModalClassName = `RCB-inline-modal ${className}`;
@@ -46,7 +44,7 @@ let InlineModal = (props, ref) => {
     if (activatorAction === "click") {
         activatorProps = {
             onClick: onActivatorClick
-        }
+        };
     } else if (activatorAction === "hover") {
         inlineModalClassName += " hover-open";
         showModalBody = true;
@@ -61,22 +59,19 @@ let InlineModal = (props, ref) => {
 
     return (<div className={inlineModalClassName} ref={inlineModalRef}>
         <div {...activatorProps} className="RCB-inline-modal-btn">{children[0]}</div>
-        {showModalBody && <div className="RCB-inline-modal-body">{children[1]}</div>}
+        {showModalBody && <div className={`RCB-inline-modal-body RCB-align-${halign}`}>{children[1]}</div>}
     </div>);
 }
 
 InlineModal = forwardRef(InlineModal);
 
-InlineModal.defaultProps = {
-    className: "",
-    activatorAction: "click", // or "hover"
-    isModalOpen: false
-};
-
 InlineModal.propTypes = {
     /** Pass any additional classNames to InlineModal component */
     className: PropTypes.string,
-    activatorAction: PropTypes.string,
+    /** Horizontal alignment of the inline modal body */
+    halign: PropTypes.oneOf(["left", "right"]),
+    /** Event on which the modal should be opened */
+    activatorAction: PropTypes.oneOf(["click", "hover"]),
     children: (props, propName, componentName) => {
         const children = props[propName];
 
@@ -94,6 +89,13 @@ InlineModal.propTypes = {
         }
     },
     isModalOpen: PropTypes.bool
+};
+
+InlineModal.defaultProps = {
+    className: "",
+    halign: "left",
+    activatorAction: "click", // or "hover"
+    isModalOpen: false
 };
 
 InlineModal.displayName = "InlineModal";
