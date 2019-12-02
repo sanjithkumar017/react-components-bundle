@@ -46,4 +46,18 @@
             vertical-align: middle;
         }
     }
+
+    &-file-input {
+        cursor: pointer;
+    }
+
+    &-drag-drop-uploader {
+        border: 2px dashed rgba(104,128,145,.42);
+        padding: 20px;
+        text-align: center;
+    }
+
+    &-drag-over {
+        background: #f3f3f3;
+    }
 }

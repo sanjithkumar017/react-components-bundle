@@ -7,3 +7,11 @@
 @import "./Table/table.scss";
 @import "./TabsComponent/tabs.scss";
 @import "./ProgressBar/progressBar.scss";
+
+.RCB-hidden {
+    display: none;
+}
+
+.RCB-no-pointer {
+    pointer-events: none;
+}

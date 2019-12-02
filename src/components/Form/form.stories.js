@@ -8,6 +8,8 @@ import Checkbox from "./Checkbox";
 import RadioList from "./RadioList";
 import Dropdown from "./Dropdown";
 import RangeSlider from "./RangeSlider";
+import FileUploader from "./FileUploader";
+import DragDropFileUploader from "./DragDropFileUploader";
 import Button, { ButtonAppearance } from "../Button";
 import { FRUITS_LIST } from "../../../public/Constants";
 
@@ -121,7 +123,7 @@ storiesOf("Form", module)
             propTables: [Dropdown]
         }
     })
-    .add("RangeSlider ", () => {
+    .add("Range Slider ", () => {
         const onSubmit = (formData) => {
             const { data } = formData;
             const { price } = data;
@@ -136,5 +138,43 @@ storiesOf("Form", module)
     }, {
         info: {
             propTables: [RangeSlider]
+        }
+    })
+    .add("File Uploader ", () => {
+        const onSubmit = (formData) => {
+            const { data } = formData;
+            const { file } = data;
+
+            console.log("Selected file: ", file[0].name);
+        };
+
+        return (<Form onSubmit={onSubmit}>
+            <FileUploader name="file" appearance="block">
+                <a href="javascript:void(0)">Upload File</a>
+            </FileUploader>
+            <Button appearance={ButtonAppearance.PRIMARY} className="full-width-btn">Submit</Button>
+        </Form>);
+    }, {
+        info: {
+            propTables: [FileUploader]
+        }
+    })
+    .add("DragDrop File Uploader ", () => {
+        const onSubmit = (formData) => {
+            const { data } = formData;
+            const { filesList } = data;
+
+            console.log("Selected file: ", filesList[0].name);
+        };
+
+        return (<Form onSubmit={onSubmit}>
+            <DragDropFileUploader name="filesList" appearance="block">
+                <div>Drag & drop files into this area</div>
+            </DragDropFileUploader>
+            <Button appearance={ButtonAppearance.PRIMARY} className="full-width-btn">Submit</Button>
+        </Form>);
+    }, {
+        info: {
+            propTables: [DragDropFileUploader]
         }
     });
