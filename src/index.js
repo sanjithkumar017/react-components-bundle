@@ -13,6 +13,7 @@ import {
     RangeSlider,
     FileUploader,
     DragDropFileUploader,
+    Toggle,
     Table,
     PaginatedTable,
     TabsComponent,
@@ -22,7 +23,8 @@ import {
 
 import { 
     dataLoader, 
-    utils 
+    utils,
+    customHooks
 } from "./core";
 
 import { ButtonAppearance, ButtonSize } from "./components/Button";
@@ -47,6 +49,7 @@ export {
     RangeSlider,
     FileUploader,
     DragDropFileUploader,
+    Toggle,
     DataLoader,
     Table,
     PaginatedTable,
@@ -54,5 +57,6 @@ export {
     NotificationComponent,
     ProgressBar,
     dataLoader,
-    utils
+    utils,
+    customHooks
 };

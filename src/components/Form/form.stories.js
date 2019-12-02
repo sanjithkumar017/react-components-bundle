@@ -10,6 +10,7 @@ import Dropdown from "./Dropdown";
 import RangeSlider from "./RangeSlider";
 import FileUploader from "./FileUploader";
 import DragDropFileUploader from "./DragDropFileUploader";
+import Toggle from "./Toggle";
 import Button, { ButtonAppearance } from "../Button";
 import { FRUITS_LIST } from "../../../public/Constants";
 
@@ -176,5 +177,22 @@ storiesOf("Form", module)
     }, {
         info: {
             propTables: [DragDropFileUploader]
+        }
+    })
+    .add("Toggle ", () => {
+        const onSubmit = (formData) => {
+            const { data } = formData;
+            const { isActive } = data;
+
+            console.log("isActive: ", isActive);
+        };
+
+        return (<Form onSubmit={onSubmit}>
+            <Toggle label="Is Active?" name="isActive" appearance="block"/>
+            <Button appearance={ButtonAppearance.PRIMARY} className="full-width-btn">Submit</Button>
+        </Form>);
+    }, {
+        info: {
+            propTables: [Toggle]
         }
     });

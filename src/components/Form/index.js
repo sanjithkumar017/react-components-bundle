@@ -8,5 +8,6 @@ export Dropdown from "./Dropdown";
 export RangeSlider from "./RangeSlider";
 export FileUploader from "./FileUploader";
 export DragDropFileUploader from "./DragDropFileUploader";
+export Toggle from "./Toggle";
 
 export default Form;
