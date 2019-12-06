@@ -11,11 +11,12 @@ const PaginationComponent = (props) => {
 
     const { perPageCount, pageNo, total } = pageConfig;
 
-    const onPerPageChanged = (perPage) => {
+    const onPerPageChanged = (perPageObj) => {
+        const perPage = +(perPageObj.id);
         onPageConfigChanged({
             ...pageConfig,
             pageNo: 1,
-            perPageCount: +perPage,
+            perPageCount: perPage,
         });
     };
 
