@@ -38,7 +38,7 @@ const RadioList = (props) => {
         {options.map(option => {
             const { id, name } = option;
 
-            return (<Fragment>
+            return (<Fragment key={id}>
                 <input {...inputProps} id={id} value={id} />
                 <label className="RCB-radio-label" htmlFor={id}>{name}</label>
             </Fragment>);

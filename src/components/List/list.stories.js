@@ -9,11 +9,13 @@ storiesOf("List", module)
         return (<List items={FRUITS_LIST} />)
     })
     .add("Custom ListItem", () => {
+        /* eslint-disable react/prop-types */
         const ListItem = ({ itemData }) => {
             let { name } = itemData;
         
             return (<li>{`Custom ListItem ---> ${name}`}</li>)
         };
+        /* eslint-enable react/prop-types */
 
         return (<List items={FRUITS_LIST} ListItem={ListItem} />)
     });

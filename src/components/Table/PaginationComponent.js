@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Dropdown from "../Form/Dropdown";
 import utils from "../../core/utils";
 
@@ -55,6 +56,15 @@ const PaginationComponent = (props) => {
             </a>
         </div>
     </div>)
+};
+
+PaginationComponent.propTypes = {
+    pageSizeList: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        name: PropTypes.string
+    })),
+    pageConfig: PropTypes.object,
+    onPageConfigChanged: PropTypes.func.isRequired
 };
 
 export default PaginationComponent;

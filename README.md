@@ -76,6 +76,8 @@ Run the following command to lint the JS code
 npm run lint
 ```
 
+Or Install your editor specific plugin by referring to [this link](https://eslint.org/docs/user-guide/integrations)
+
 ### Viewing the components
 
 View the available components along with their accepted props using [storybook](https://storybook.js.org/)

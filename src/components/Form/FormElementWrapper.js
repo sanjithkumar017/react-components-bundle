@@ -10,6 +10,8 @@ const FormElementWrapper = (props) => {
 };
 
 FormElementWrapper.propTypes = {
+    /** Pass any additional classNames to Form component */
+    className: PropTypes.string,
     appearance: PropTypes.string
 };
 

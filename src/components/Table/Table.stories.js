@@ -41,9 +41,11 @@ const getUsersColumnConfigs = () => {
     let columnConfigs = [{
         label: "Avatar",
         key: "avatar",
-        valueFormatter: function({value}) {
+        /* eslint-disable react/prop-types */
+        valueFormatter: function renderUserImage({value}) {
             return <img src={value} />
         }
+        /* eslint-enable react/prop-types */
     }, {
         label: "First Name",
         key: "name",
@@ -57,6 +59,7 @@ const getUsersColumnConfigs = () => {
     return columnConfigs;
 };
 
+/* eslint-disable react/prop-types */
 const TODODetail = (props) => {
     const { parentRecord = {} } = props;
     const { id } = parentRecord;
@@ -86,6 +89,7 @@ const TODODetail = (props) => {
         <div><b>Status:</b> {completed ? "Completed" : "Not Completed"} </div>
     </DataLoader>);
 };
+/* eslint-enable react/prop-types */
 
 const ServerPaginatedExample = () => {
     const [ usersData, setUsersData ] = useState({});

@@ -22,6 +22,14 @@ const ModalContent = (props) => {
     </div>);
 };
 
+ModalContent.propTypes = {
+    /** Pass any additional classNames to Modal component */
+    className: PropTypes.string,
+    title: PropTypes.string,
+    showClose: PropTypes.bool,
+    hideModal: PropTypes.func
+};
+
 /** Displays a full screen modal */
 let Modal = (props, ref) => {
     const { isOpen, ...restProps } = props;

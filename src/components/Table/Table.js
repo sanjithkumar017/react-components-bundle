@@ -7,6 +7,7 @@ const DefaultNoDataComponent = () => {
 };
 
 /* eslint-disable react/prop-types */
+
 const getTDValue = ({ columnValue, rowData = {}, columnConfig = {}, tdProps = {}}) => {
     const { key, valueFormatter, ColumnComponent, componentProps = {} } = columnConfig;
     let tdValue = columnValue;
@@ -14,7 +15,7 @@ const getTDValue = ({ columnValue, rowData = {}, columnConfig = {}, tdProps = {}
     if (typeof(valueFormatter) === "function") {
         tdValue = valueFormatter({value: columnValue, record: rowData});
     } else if (ColumnComponent) {
-        tdValue = <ColumnComponent record={record} {...componentProps} />
+        tdValue = <ColumnComponent record={rowData} {...componentProps} />
     }
 
     return <td key={key} {...tdProps}>{tdValue}</td>

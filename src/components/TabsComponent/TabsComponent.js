@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import List from "../List";
 
@@ -15,6 +15,15 @@ const TabTitleItem = (props) => {
     return (<li className={className} selected={isSelected} onClick={triggerTabChange}>
         {label}
     </li>);
+};
+
+TabTitleItem.propTypes = {
+    itemData: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired
+    }).isRequired,
+    selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    changeTab: PropTypes.func.isRequired
 };
 
 const TabsComponent = (props) => {

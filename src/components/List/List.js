@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 const ListItem = (props) => {
@@ -6,7 +6,14 @@ const ListItem = (props) => {
     let { name } = itemData;
 
     return (<li className="RCB-list-item">{name}</li>);
-}
+};
+
+ListItem.propTypes = {
+    itemData: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+    }).isRequired,
+};
 
 const List = (props) => {
     const {
@@ -28,7 +35,14 @@ List.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         name: PropTypes.string
-    })).isRequired
+    })).isRequired,
+    idAttribute: PropTypes.string,
+    /** Pass a custom ListItem component */
+    ListItem: PropTypes.oneOfType([
+        PropTypes.instanceOf(Element),
+        PropTypes.instanceOf(Component),
+        PropTypes.func
+    ])
 }
 
 List.defaultProps = {

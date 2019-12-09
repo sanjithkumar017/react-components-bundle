@@ -5,6 +5,7 @@ import List from "../List";
 import { FormContext } from "./Form";
 import FormElementWrapper from "./FormElementWrapper";
 
+/* eslint-disable react/prop-types */
 const defaultRenderSelectionSummary = ({selectedItems = [], multiSelect, noSelectionLabel}) => {
     let summaryString = "";
     const selectedCount = selectedItems.length;
@@ -18,6 +19,8 @@ const defaultRenderSelectionSummary = ({selectedItems = [], multiSelect, noSelec
     return (<div>{summaryString}<span className="RCB-select-arrow"></span></div>);
 };
 
+/* eslint-enable react/prop-types */
+
 export const DefaultDropdownItem = (props) => {
     const { itemData, selectItem, selected = [], idAttribute } = props;
     const { name } = itemData;
@@ -29,6 +32,16 @@ export const DefaultDropdownItem = (props) => {
     return (<li onClick={() => selectItem(itemData)} className={className}>
         {name}
     </li>);
+};
+
+DefaultDropdownItem.propTypes = {
+    itemData: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+    }).isRequired,
+    selectItem: PropTypes.func.isRequired,
+    selected: PropTypes.array,
+    idAttribute: PropTypes.string
 };
 
 const Dropdown = (props) => {
@@ -146,7 +159,6 @@ Dropdown.defaultProps = {
     label: "",
     showLabel: true,
     multiSelect: false,
-    className: "",
     idAttribute: "id",
     noSelectionLabel: "Select",
     appearance: "inline",

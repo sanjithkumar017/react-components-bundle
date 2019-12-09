@@ -19,7 +19,7 @@ class DataLoader {
     }
     getRequestDef({ requestId, params = {}, headers = {} }) {
         const requestConfig = this._requestsMap[requestId];
-        const { url, method = "GET", paramParser = {} } = requestConfig;
+        const { url, method = "GET" } = requestConfig;
 
         let requestUrl = (typeof(url) === "function") ? url(params) : url;
         let reqMethod = method.toLowerCase();
