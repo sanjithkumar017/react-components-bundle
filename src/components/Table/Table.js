@@ -6,6 +6,7 @@ const DefaultNoDataComponent = () => {
     return (<div className="RCB-no-data">No data found</div>)
 };
 
+/* eslint-disable react/prop-types */
 const getTDValue = ({ columnValue, rowData = {}, columnConfig = {}, tdProps = {}}) => {
     const { key, valueFormatter, ColumnComponent, componentProps = {} } = columnConfig;
     let tdValue = columnValue;
@@ -78,6 +79,8 @@ const TR = (props) => {
         })}
     </tr>);
 };
+
+/* eslint-enable react/prop-types */
 
 const Table = (props) => {
     const {
