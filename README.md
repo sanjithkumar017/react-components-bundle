@@ -68,6 +68,14 @@ npm run scss -- --watch
 
 **Note:** Prefix all the CSS classNames with namespace `"RCB-"`
 
+### Linting your JS files
+
+Run the following command to lint the JS code
+
+```
+npm run lint
+```
+
 ### Viewing the components
 
 View the available components along with their accepted props using [storybook](https://storybook.js.org/)
