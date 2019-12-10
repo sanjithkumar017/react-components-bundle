@@ -21,18 +21,29 @@ import { Button } from "react-components-bundle";
 
 ## Using CSS
 
+You can use the CSS in 2 ways
+
+**1. Use individual component CSS**
+
 You can import the individual files for each of the components like below:
 
+To include the core CSS which will contain the core styles without which the component behaviour would be meaningless 
 ```
-import "react-components-bundle/components/Button/button.css";
+import "react-components-bundle/components/Table/tableCore.css";
 ```
 
-Or
+To include the theme CSS which will contain the styles which suggests a theme for the component but is not a must have to use the library
+```
+import "react-components-bundle/components/Table/tableTheme.css";
+```
+
+**2. Include the bundled CSS which has all component's CSS**
 
 You can import the bundled CSS file which contains all the component's CSS like below:
-```
-import "react-components-bundle/components/styles.css";
-```
+There will be 2 files for each component: 
+
+- `<componentName>Core.css` : This will contain the styles without which the component behaviour would be meaningless 
+- `<componentName>Theme.css` : This will contain the styles which suggests a theme for all the components but is not a must have to use the library
 
 ## Viewing the components
 

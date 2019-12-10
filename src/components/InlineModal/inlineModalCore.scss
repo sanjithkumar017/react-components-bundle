@@ -16,20 +16,8 @@
         }
     }
 
-    &-inline-modal-btn {
-        display: inline-block;
-        background: #FFF;
-        border: 1px solid #eee;
-        padding: 10px;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-
     &-inline-modal-body {
         position: absolute;
-        background: #FFF;
-        border: 1px solid #efeeee;
-        box-shadow: 0 9px 12px 0 rgba(0,0,0,0.15);
         z-index: 1;
 
         &.RCB-align-left {

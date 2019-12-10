@@ -5,7 +5,8 @@ import { withA11y } from '@storybook/addon-a11y';
 import { addReadme } from 'storybook-readme';
 import '@storybook/addon-console';
 import "../public/css/storybook.scss";
-import "../src/components/styles.css";
+import "../src/components/core.css";
+import "../src/components/theme.css";
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/components', true, /\.stories\.js$/);

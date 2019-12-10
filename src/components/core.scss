@@ -1,0 +1,20 @@
+/**
+    Add all the styles here without which the component behaviour would be meaningless 
+    & hence these styles are must haves for anyone using the component
+**/
+
+@import "./Form/formCore.scss";
+@import "./Modal/modalCore.scss";
+@import "./InlineModal/inlineModalCore.scss";
+@import "./List/listCore.scss";
+@import "./Table/tableCore.scss";
+@import "./TabsComponent/tabsCore.scss";
+@import "./ProgressBar/progressBarCore.scss";
+
+.RCB-hidden {
+    display: none;
+}
+
+.RCB-no-pointer {
+    pointer-events: none;
+}

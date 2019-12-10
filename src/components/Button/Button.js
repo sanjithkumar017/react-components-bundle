@@ -17,12 +17,12 @@ export const ButtonSize = {
 
 const Button = (props) => {
     const { children, className, loading, disabled, appearance, size, onClick } = props;
-    const btnClassName = `RCB-btn RCB-btn-${appearance} RCB-btn-${size} ${className}` + (loading ? " loading" : "");
+    const btnClassName = `RCB-btn RCB-btn-${appearance} RCB-btn-${size} ${className}` + (loading ? " RCB-btn-loading" : "");
 
     return (<button className={btnClassName} disabled={disabled} onClick={onClick}>
         {children}
     </button>);
-}
+};
 
 Button.propTypes = {
     /** Pass any additional classNames to Button component */
