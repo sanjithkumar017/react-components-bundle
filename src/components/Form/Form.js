@@ -7,16 +7,26 @@ export const FormContext = createContext({
 
 const Form = (props) => {
     const [ formData, setFormData ] = useState({});
+    const [ formErrors, setFormErrors ] = useState({});
     const { className, onSubmit } = props;
 
-    const onValueChange = (key, value) => {
+    const onValueChange = (key, value, error) => {
         formData[key] = value;
         setFormData(formData);
+        
+        if (error) {
+            formErrors[key] = error;
+        } else {
+            /* remove the error value */
+            delete formErrors[key];
+        }
+
+        setFormErrors(formErrors);
     };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        onSubmit({ data: formData });
+        onSubmit({ data: formData, errors: formErrors });
     }
 
     return (<form onSubmit={onFormSubmit} className={className}>

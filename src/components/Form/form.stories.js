@@ -43,13 +43,23 @@ storiesOf("Form", module)
     })
     .add("Text Input", () => {
         const onSubmit = (formData) => {
-            const { data } = formData;
-
-            console.log("Submitted data: ", data);
+            const { data, errors = {} } = formData;
+            
+            if (Object.keys(errors).length) {
+                console.log("ERRORS FOUND : ");
+                console.log(errors);
+            } else {
+                console.log("Submitted data: ", data);
+            }
         };
 
         return (<Form onSubmit={onSubmit}>
-            <Input type="text" name="name" label="Name" placeholder="Enter your name" appearance="block" />
+            <Input type="text" name="email" label="Name" 
+                placeholder="Enter your email" appearance="block" 
+                validations={[{
+                    type: "EMAIL",
+                    message: "Please enter a valid email address"
+                }]} />
             <Button appearance={ButtonAppearance.PRIMARY} className="full-width-btn">Submit</Button>
         </Form>);
     }, {
