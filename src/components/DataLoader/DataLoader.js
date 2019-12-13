@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Promise from "bluebird";
 import dequal from "dequal";
@@ -74,7 +74,6 @@ DataLoader.propTypes = {
     /** Custom loader component */
     Loader: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
-        PropTypes.instanceOf(Component),
         PropTypes.func
     ])
 };

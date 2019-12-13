@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const ListItem = (props) => {
@@ -40,7 +40,6 @@ List.propTypes = {
     /** Pass a custom ListItem component */
     ListItem: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
-        PropTypes.instanceOf(Component),
         PropTypes.func
     ])
 }

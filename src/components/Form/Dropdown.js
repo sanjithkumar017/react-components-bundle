@@ -6,7 +6,7 @@ import { FormContext } from "./Form";
 import FormElementWrapper from "./FormElementWrapper";
 
 /* eslint-disable react/prop-types */
-const defaultRenderSelectionSummary = ({selectedItems = [], multiSelect, noSelectionLabel}) => {
+const DefaultSelectionSummary = ({selectedItems = [], multiSelect, noSelectionLabel}) => {
     let summaryString = "";
     const selectedCount = selectedItems.length;
 
@@ -50,7 +50,7 @@ const Dropdown = (props) => {
         label,
         showLabel, 
         name,
-        renderSelectionSummary, 
+        SelectionSummary, 
         className, 
         value, 
         onChange, 
@@ -99,11 +99,10 @@ const Dropdown = (props) => {
         {showLabel && <label className="RCB-form-el-label" htmlFor={name}>{label}</label>}
         <InlineModal className="RCB-form-el" ref={inlineModalRef} halign={halign}>
             <InlineModalActivator>
-                {renderSelectionSummary({
-                    selectedItems: selected,
-                    noSelectionLabel,
-                    multiSelect
-                })}
+                <SelectionSummary 
+                    selectedItems={selected}
+                    noSelectionLabel={noSelectionLabel}
+                    multiSelect={multiSelect} />
             </InlineModalActivator>
             <InlineModalBody>
                 <List items={options} ListItem={DropdownItem} selected={selected} selectItem={selectItem} idAttribute={idAttribute} />
@@ -111,6 +110,11 @@ const Dropdown = (props) => {
         </InlineModal>
     </FormElementWrapper>);
 };
+
+const VALUE_SHAPE = PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    name: PropTypes.string
+});
 
 Dropdown.propTypes = {
     /** Pass any additional classNames to Dropdown component */
@@ -131,10 +135,7 @@ Dropdown.propTypes = {
         name: PropTypes.string
     })),
     /** array of selected item objects */
-    value: PropTypes.oneOf([PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        name: PropTypes.string
-    })), ""]),
+    value: PropTypes.oneOf([VALUE_SHAPE, PropTypes.arrayOf(VALUE_SHAPE), ""]),
     onChange: PropTypes.func,
     /** Is dropdown multi select or single select */
     multiSelect: PropTypes.bool,
@@ -145,10 +146,10 @@ Dropdown.propTypes = {
         PropTypes.instanceOf(Element),
         PropTypes.func
     ]),
-    /** Pass this function to customise the selection summary HTML. 
+    /** Pass this component to customise the selection summary HTML. 
      * The array of selected item objects will be sent as props
      */
-    renderSelectionSummary: PropTypes.func,
+    SelectionSummary: PropTypes.func,
     /** Define the appearance of the form element. Accepted values are either "inline" or "block" */
     appearance: PropTypes.oneOf(["inline", "block"])
 };
@@ -163,7 +164,7 @@ Dropdown.defaultProps = {
     noSelectionLabel: "Select",
     appearance: "inline",
     DropdownItem: DefaultDropdownItem,
-    renderSelectionSummary: defaultRenderSelectionSummary
+    SelectionSummary: DefaultSelectionSummary
 };
 
 export default Dropdown;

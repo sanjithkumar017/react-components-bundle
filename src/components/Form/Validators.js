@@ -1,6 +1,6 @@
-export const VALIDATORS = {
+const VALIDATORS = {
     EMAIL: (value = "") => {
-        const regEx = /^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-\\+]+)*@[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-\+]+)*(\.[A-Za-z]{2,})$/i;
+        const regEx = /^[_A-Za-z0-9-+]+(\.[_A-Za-z0-9-\\+]+)*@[_A-Za-z0-9-+]+(\.[_A-Za-z0-9-+]+)*(\.[A-Za-z]{2,})$/i;
         return regEx.test(value.trim());
     },
     NUMERIC: (value = "") => {
@@ -13,7 +13,7 @@ export const VALIDATORS = {
         return regEx.test(value.trim());
     },
     URL: (value = "") => {
-        const regEx = /^(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/i;
+        const regEx = /^(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?$/i;
         return regEx.test(value.trim());
     },
     REQUIRED: (value) => {
@@ -27,3 +27,5 @@ export const VALIDATORS = {
         return validator.call(null, value, validationObj);
     }
 };
+
+export default VALIDATORS;

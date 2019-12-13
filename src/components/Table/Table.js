@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import utils from "../../core/utils";
 
@@ -137,13 +137,11 @@ Table.propTypes = {
     /** Component to be rendered on expanding a row */
     ExpandedRowComponent: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
-        PropTypes.instanceOf(Component),
         PropTypes.func
     ]),
     /** Component to be rendered if the table has no data */
     NoDataComponent: PropTypes.oneOfType([
         PropTypes.instanceOf(Element),
-        PropTypes.instanceOf(Component),
         PropTypes.func
     ]),
 }
