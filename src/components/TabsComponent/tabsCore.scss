@@ -1,7 +1,10 @@
 .RCB {
+    &-tabs-container {
+        display: flex;
+    }
+
     &-tab-title {
         list-style-type: none;
-        display: inline-block;
         padding: 10px;
         cursor: pointer;
 
@@ -9,10 +12,32 @@
             background: #FFF;
             font-weight: bold;
             border: 1px solid #cacaca;
-            border-bottom: 0;
             position: relative;
             z-index: 1;
-            bottom: -1px;
+        }
+    }
+
+    &-tabs-horizontal {
+        flex-direction: column;
+        
+        .RCB-tab-title {
+            display: inline-block;
+
+            &.selected {
+                border-bottom: 0;
+                bottom: -1px;
+            }
+        }
+    }
+
+    &-tabs-vertical {
+        .RCB-tab-title {
+            display: block;
+
+            &.selected {
+                border-right: 0;
+                right: -1px;
+            }
         }
     }
 

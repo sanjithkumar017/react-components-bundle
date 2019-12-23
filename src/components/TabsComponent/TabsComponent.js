@@ -27,9 +27,10 @@ TabTitleItem.propTypes = {
 };
 
 const TabsComponent = (props) => {
-    const { className, items, selectedTab, onTabChanged } = props;
+    const { className, items, selectedTab, onTabChanged, appearance } = props;
     const defaultSelected = selectedTab || (items[0] ? items[0].id : "");
     const [ selected, setSelected ] = useState(defaultSelected);
+    const appearanceClassName = `RCB-tabs-${appearance.toLowerCase()}`;
 
     const changeTab = (id) => {
         setSelected(id);
@@ -41,7 +42,7 @@ const TabsComponent = (props) => {
     const selecetdTabData = items.find(obj => obj.id === selected);
     const { tabComponent } = selecetdTabData;
 
-    return (<div className={`RCB-tabs-container ${className}`}>
+    return (<div className={`RCB-tabs-container ${appearanceClassName} ${className}`}>
         <List items={items} ListItem={TabTitleItem} selected={selected} changeTab={changeTab} className="RCB-tabs-header" />
         <div className="RCB-tab-content">
             {tabComponent}
@@ -60,11 +61,14 @@ TabsComponent.propTypes = {
     })).isRequired,
     /** ID of the tab item to be selected */
     selectedTab: PropTypes.string,
+    /** Horizontal or vertical tabs */
+    appearance: PropTypes.oneOf(["HORIZONTAL", "VERTICAL"]),
     onTabChanged: PropTypes.func
 };
 
 TabsComponent.defaultProps = {
-    className: ""
+    className: "",
+    appearance: "HORIZONTAL"
 };
 
 export default TabsComponent;
