@@ -75,5 +75,5 @@ https://anupamahosad.github.io/react-components-bundle/
 
 ## Contributing
 
-To contribute to the project, read the [contribution guidelines](CONTRIBUTING.md)
+To contribute to the project, read the [contribution guidelines](CONTRIBUTE.md)
 
