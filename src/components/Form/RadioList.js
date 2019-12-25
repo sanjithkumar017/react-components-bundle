@@ -1,16 +1,14 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FormContext } from "./Form";
 import FormElementWrapper from "./FormElementWrapper";
   
 const RadioList = (props) => {
-    const { options, label, name, className, value, defaultValue, appearance, onChange } = props;
+    const { options, label, name, className, value, appearance, onChange } = props;
     const { onValueChange } = useContext(FormContext);
 
     const onInputChange = (event) => {
         const value = event.target.value;
-
-        // TODO : do validations
 
         if (typeof(onChange) === "function") {
             onChange(value);
@@ -23,7 +21,6 @@ const RadioList = (props) => {
         type: "radio",
         label,
         name,
-        defaultValue,
         className: "RCB-form-el",
         onChange: onInputChange
     };
@@ -33,13 +30,21 @@ const RadioList = (props) => {
         inputProps.value = value;
     }
 
+    useEffect(() => {
+        if (typeof(value) !== "undefined" && typeof(onValueChange) === "function") {
+            /* set the initial form element value in the form context */
+            onValueChange(name, value);
+        }
+    }, []);
+
     return (<FormElementWrapper className={className} appearance={appearance}>
         <label className="RCB-form-el-label">{label}</label>
         {options.map(option => {
             const { id, name } = option;
+            const checked = value === id;
 
             return (<Fragment key={id}>
-                <input {...inputProps} id={id} value={id} />
+                <input {...inputProps} id={id} value={id} defaultChecked={checked} />
                 <label className="RCB-radio-label" htmlFor={id}>{name}</label>
             </Fragment>);
         })}
@@ -58,9 +63,8 @@ RadioList.propTypes = {
     label: PropTypes.string,
     /** Unique ID for the input element */
     name: PropTypes.string.isRequired,
-    /** Will be used only with onChange function, or else ignored */
+    /** ID of the selected radio item */
     value: PropTypes.any,
-    defaultValue: PropTypes.any,
     /** Define the appearance of the form element. Accepted values are either "inline" or "block" */
     appearance: PropTypes.oneOf(["inline", "block"]),
     /** Becomes a controlled component if onChange function is given */
