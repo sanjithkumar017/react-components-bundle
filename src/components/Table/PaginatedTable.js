@@ -28,6 +28,7 @@ const PaginatedTable = (props) => {
         isExpandableTable,
         ExpandedRowComponent,
         onDataLoaded,
+        NoDataComponent,
         ...restProps
     } = props;
 
@@ -40,7 +41,7 @@ const PaginatedTable = (props) => {
 
     let finalRecords = paginationType === "SERVER" ? records : getPageRecords(records, pageConfig);
 
-    let extraParams = utils.omit(restProps, ["NoDataComponent", pageNoKey, perPageKey]);
+    let extraParams = utils.omit(restProps, [pageNoKey, perPageKey]);
     let requestParams = {
         [pageNoKey]: pageNo,
         [perPageKey]: perPageCount,
@@ -56,7 +57,7 @@ const PaginatedTable = (props) => {
                             onPageConfigChanged={setPageConfig} 
                             pageConfig={{...pageConfig, total: total}} />
 
-    let wrappedComponent =  (<Table records={finalRecords} columnConfigs={columnConfigs} idAttribute={idAttribute}
+    let wrappedComponent =  (<Table records={finalRecords} columnConfigs={columnConfigs} idAttribute={idAttribute} NoDataComponent={NoDataComponent}
                                     isExpandableTable={isExpandableTable} ExpandedRowComponent={ExpandedRowComponent} />);
     
     if (paginationType === "SERVER") {

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useImperativeHandle } from "react";
+import React, { forwardRef, useState, useImperativeHandle, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
@@ -43,6 +43,10 @@ let Modal = (props, ref) => {
     const hideModal = () => {
         setIsModalOpen(false);
     };
+
+    useEffect(() => {
+        setIsModalOpen(isOpen);
+    }, [isOpen]);
 
     /* add methods that can be accessed via this component's ref */
     useImperativeHandle(ref, () => ({
