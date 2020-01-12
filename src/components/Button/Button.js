@@ -15,6 +15,10 @@ export const ButtonSize = {
     LARGE: "large"
 };
 
+/**
+ * 
+ * Displays a Button component 
+ */
 const Button = (props) => {
     const { children, className, loading, disabled, appearance, size, onClick } = props;
     const btnClassName = `RCB-btn RCB-btn-${appearance} RCB-btn-${size} ${className}` + (loading ? " RCB-btn-loading" : "");
@@ -25,7 +29,7 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
-    /** Pass any additional classNames to Button component */
+    /** Add any additional classes to Button component */
     className: PropTypes.string,
     /** Boolean indicating whether the button should render as disabled */
     disabled: PropTypes.bool,
@@ -40,7 +44,7 @@ Button.propTypes = {
        }   
     */
     appearance: PropTypes.oneOf(Object.values(ButtonAppearance)),
-    /** String indicating how Button should be rendered.
+    /** String indicating the size of the Button
      * Must be one of,
      * ButtonSize = {
         SMALL: "small",
@@ -49,7 +53,7 @@ Button.propTypes = {
     }
     */
     size: PropTypes.oneOf(Object.values(ButtonSize)),
-    /** onClick handler */
+    /** Button onClick handler */
     onClick: PropTypes.func
 };
 

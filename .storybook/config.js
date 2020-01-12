@@ -8,9 +8,6 @@ import "../public/css/storybook.scss";
 import "../src/components/core.css";
 import "../src/components/theme.css";
 
-// automatically import all files ending in *.stories.js
-const req = require.context('../src/components', true, /\.stories\.js$/);
-
 addParameters({
     options: {
         showPanel: true,
@@ -30,8 +27,9 @@ addDecorator(addReadme);
 /* accessibilty addon */
 addDecorator(withA11y);
 
-function loadStories() {
-  req.keys().forEach(filename => req(filename));
-}
-
-configure(loadStories, module);
+configure(
+    [
+        require.context("../src", false, /Intro\.stories\.mdx/),
+        require.context('../src/', true, /\.stories\.js$/)
+    ]
+, module);

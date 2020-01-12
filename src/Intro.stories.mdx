@@ -1,0 +1,119 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System|Introduction" />
+
+## Introduction to the RCB (React Components Bundle) library
+
+RCB contains a bunch of low level components (atoms of a design system) that you can use individually 
+or combine them to make additional components (molecules of a design system) to build web pages.
+
+## Using the components library
+
+First, install the package from npm
+
+```
+npm install react-components-bundle
+```
+
+Next, import the required components. There are 2 ways to achieve this.
+
+If you want a minimal footprint from the RCB library and include only the components which you use, 
+then import the components individually as shown below. 
+This enables tree shaking and therefore components that you did not use will not get included in your final bundle.
+
+```
+import Button from "react-components-bundle/components/Button";
+```
+
+If size of the bundle does not matter or you will use all/most of the components in the RCB library, 
+then you can import the components as shown below:
+
+```
+import { Button } from "react-components-bundle";
+```
+
+### Using core CSS
+
+Finally, include the core CSS like below,
+
+```
+import "react-components-bundle/components/core.css";
+```
+
+The core CSS file will contain the core styles without which the component will not behave as expected. 
+Hence do not forget to include this. 
+
+### Using theme CSS
+
+Theme CSS file will contain the styles which suggests a theme for all the components but is not a must have to use the library.
+
+You can use the theme CSS in 2 ways:
+
+**1. Use individual component CSS**
+
+You can import the individual files for each of the components like below:
+
+```
+import "react-components-bundle/components/Table/tableTheme.css";
+```
+
+**2. Include the bundled CSS file which has all component's CSS**
+
+You can import the bundled CSS file which contains all the component's CSS like below:
+
+```
+import "react-components-bundle/components/theme.css";
+```
+
+## Library structure
+
+```
+react-components-bundle
+│
+│
+└─── components
+│    │   
+│    └─── Button
+│    │
+│    └─── DataLoader
+│    │   
+│    └─── Form
+│    │    │   
+│    │    └─── Input
+│    │    │    
+│    │    └─── Checkbox
+│    │    │    
+│    │    └─── DragDropFileUploader
+│    │    │    
+│    │    └─── Dropdown
+│    │    │   
+│    │    └─── FileUploader
+│    │    │   
+│    │    └─── RadioList
+│    │    │   
+│    │    └─── RangeSlider
+│    │    │    
+│    │    └─── TextArea
+│    │    │    
+│    │    └─── Toggle
+│    │
+│    └─── InlineModal
+│    │
+│    └─── List
+│    │
+│    └─── Modal
+│    │
+│    └─── NotificationComponent
+│    │
+│    └─── ProgressBar
+│    │
+│    └─── Table
+│    │
+│    └─── TabsComponent
+│   
+└─── core
+     │
+     └─── dataLoader
+     │
+     └─── utils
+```
